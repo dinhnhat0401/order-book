@@ -14,7 +14,7 @@ public protocol MarketDataRepositoryProtocol {
     func disconnect()
     func subscribe(topics: [Topic])
     func unsubscribe(topics: [Topic])
-//	func makeAsyncIterator() -> AsyncThrowingStream<any MarketDataResponseProtocol, Error>.Iterator
+    func stream() -> AsyncThrowingStream<MarketDataResponseProtocol, Error>
 }
 
 final class MarketDataRepository: MarketDataRepositoryProtocol {
@@ -84,11 +84,39 @@ final class MarketDataRepository: MarketDataRepositoryProtocol {
 		service.unsubscribe(topicArgs: topicArgs)
 	}
 
-//	func makeAsyncIterator() async -> AsyncThrowingStream<any MarketDataResponseProtocol, Error>.Iterator {
-//        for await message in service.makeAsyncIterator() {
-//
-//        }
-//	}
+	func stream() -> AsyncThrowingStream<MarketDataResponseProtocol, Error> {
+		return AsyncThrowingStream { continuation in
+            Task {
+                for try await message in self.service.stream() {
+                    // Convert message string to Data
+                    guard let data = message.data(using: .utf8) else {
+                        continuation.finish(throwing: MarketDataRepository.MarketDataRepositoryError.unknown)
+                        return
+                    }
+                    let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
+                    let table = (json?["table"] as? String) ?? ""
+                    guard table == "orderBookL2" else {
+                        // Decode message to Trade
+                        guard let decodedTrade = try? JSONDecoder().decode(Trade.self, from: data) else {
+                            // TODO: check this
+//                            continuation.finish(throwing: MarketDataRepository.MarketDataRepositoryError.unknown)
+                            continue
+                        }
+                        // and yield it
+                        continuation.yield(decodedTrade as MarketDataResponseProtocol)
+                        continue
+                    }
+                    // Decode message to OrderBookL2
+                    guard let decodedOrderBookL2 = try? JSONDecoder().decode(OrderBookL2.self, from: data) else {
+//                        continuation.finish(throwing: MarketDataRepository.MarketDataRepositoryError.unknown)
+                        continue
+                    }
+                    // and yield it
+                    continuation.yield(decodedOrderBookL2 as MarketDataResponseProtocol)
+                }
+            }
+		}
+	}
 }
 
 extension MarketDataRepository {
