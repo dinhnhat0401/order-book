@@ -11,6 +11,12 @@ public struct Trade: MarketDataResponseProtocol, Decodable {
     public let table: String
     public let action: Action
     public let data: [TradeData]
+
+    enum CodingKeys: String, CodingKey {
+        case table = "table"
+        case action = "action"
+        case data = "data"
+    }
 }
 
 public struct TradeData: Decodable {
@@ -26,4 +32,18 @@ public struct TradeData: Decodable {
     let homeNotional: Double
     let foreignNotional: Double
     let trdType: String
+
+    enum CodingKeys: String, CodingKey {
+        case timestamp = "timestamp"
+        case symbol = "symbol"
+        case side = "side"
+        case size = "size"
+        case price = "price"
+        case tickDirection = "tickDirection"
+        case trdMatchID = "trdMatchID"
+        case grossValue = "grossValue"
+        case homeNotional = "homeNotional"
+        case foreignNotional = "foreignNotional"
+        case trdType = "trdType"
+    }
 }

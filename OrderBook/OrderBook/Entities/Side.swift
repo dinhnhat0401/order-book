@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum Side: Decodable {
-    case buy
-    case sell
+public enum Side: String, Decodable {
+    case buy = "Buy"
+    case sell = "Sell"
 }

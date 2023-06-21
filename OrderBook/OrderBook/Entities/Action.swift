@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum Action: Decodable {
+public enum Action: String, Decodable {
     // The type of the message. Types:
     // 'partial'; This is a table image, replace your data entirely.
     // 'update': Update a single row.
