@@ -7,7 +7,16 @@
 
 import Foundation
 
-public enum Topic: String {
-    case orderBook(symbol: String) = "orderBookL2:\(symbol)"
-    case trades(symbol: String) = "trade:\(symbol)"
+public enum Topic {
+    case orderBook(symbol: String)
+    case trades(symbol: String)
+
+    public var rawValue: String {
+        switch self {
+        case .orderBook(let symbol):
+            return "orderBookL2:\(symbol)"
+        case .trades(let symbol):
+            return "trade:\(symbol)"
+        }
+    }
 }

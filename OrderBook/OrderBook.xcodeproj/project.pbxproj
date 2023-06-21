@@ -56,8 +56,9 @@
 		848CB4C52A40978D0097B017 /* Services.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 848CB4AF2A40978C0097B017 /* Services.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		848CB4CE2A40985C0097B017 /* MarketDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CB4CC2A4098410097B017 /* MarketDataService.swift */; };
 		848CB4D02A40986D0097B017 /* MarketDataInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CB4CF2A40986D0097B017 /* MarketDataInteractor.swift */; };
-		848CB4D22A4098760097B017 /* MarketDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CB4D12A4098760097B017 /* MarketDataRepository.swift */; };
 		848CB4D42A409B6E0097B017 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CB4D32A409B6E0097B017 /* Topic.swift */; };
+		848CB4D52A41DFC30097B017 /* MarketDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CB4D12A4098760097B017 /* MarketDataRepository.swift */; };
+		848CB4E02A41E4AE0097B017 /* MarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CB4DE2A41E4A60097B017 /* MarketData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -215,6 +216,13 @@
 			remoteGlobalIDString = 848CB4AE2A40978C0097B017;
 			remoteInfo = Services;
 		};
+		848CB4D62A41DFCE0097B017 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8448304B2A407C4100367567 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 848CB4412A4096440097B017;
+			remoteInfo = Entities;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -285,6 +293,7 @@
 		848CB4CF2A40986D0097B017 /* MarketDataInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataInteractor.swift; sourceTree = "<group>"; };
 		848CB4D12A4098760097B017 /* MarketDataRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketDataRepository.swift; sourceTree = "<group>"; };
 		848CB4D32A409B6E0097B017 /* Topic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Topic.swift; sourceTree = "<group>"; };
+		848CB4DE2A41E4A60097B017 /* MarketData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarketData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -530,6 +539,7 @@
 				844830EF2A408A6600367567 /* Action.swift */,
 				844830F12A408B2F00367567 /* Side.swift */,
 				848CB4D32A409B6E0097B017 /* Topic.swift */,
+				848CB4DE2A41E4A60097B017 /* MarketData.swift */,
 				848CB4442A4096440097B017 /* Entities.h */,
 				848CB4452A4096440097B017 /* Entities.docc */,
 			);
@@ -836,6 +846,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				848CB4D72A41DFCE0097B017 /* PBXTargetDependency */,
 			);
 			name = Repositories;
 			productName = Repositories;
@@ -1151,7 +1162,6 @@
 				844830592A407C4100367567 /* ContentView.swift in Sources */,
 				848CB4D02A40986D0097B017 /* MarketDataInteractor.swift in Sources */,
 				844830572A407C4100367567 /* OrderBookApp.swift in Sources */,
-				848CB4D22A4098760097B017 /* MarketDataRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1213,6 +1223,7 @@
 				848CB45F2A40964E0097B017 /* Trade.swift in Sources */,
 				848CB4612A40964E0097B017 /* Side.swift in Sources */,
 				848CB4622A40964E0097B017 /* Action.swift in Sources */,
+				848CB4E02A41E4AE0097B017 /* MarketData.swift in Sources */,
 				848CB4462A4096440097B017 /* Entities.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1230,6 +1241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				848CB46C2A4096890097B017 /* Repositories.docc in Sources */,
+				848CB4D52A41DFC30097B017 /* MarketDataRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1386,6 +1398,11 @@
 			isa = PBXTargetDependency;
 			target = 848CB4AE2A40978C0097B017 /* Services */;
 			targetProxy = 848CB4C22A40978D0097B017 /* PBXContainerItemProxy */;
+		};
+		848CB4D72A41DFCE0097B017 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 848CB4412A4096440097B017 /* Entities */;
+			targetProxy = 848CB4D62A41DFCE0097B017 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

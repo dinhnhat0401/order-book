@@ -7,13 +7,13 @@
 
 import Foundation
 
-struct Trade: Decodable {
-    let table: String
-    let action: Action
-    let data: [TradeData]
+public struct Trade: MarketDataResponseProtocol, Decodable {
+    public let table: String
+    public let action: Action
+    public let data: [TradeData]
 }
 
-struct TradeData: Decodable {
+public struct TradeData: Decodable {
     // TODO: remove unused properties
     let timestamp: String
     let symbol: String
