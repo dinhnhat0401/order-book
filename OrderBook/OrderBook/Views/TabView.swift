@@ -14,7 +14,7 @@ struct Tab {
 
 // TODO: optimize
 struct Tabs: View {
-    var fixed = true
+    var fixed = false
     var tabs: [Tab]
     var geoWidth: CGFloat
     @Binding var selectedTab: Int
@@ -41,7 +41,8 @@ struct Tabs: View {
                                     // Bar Indicator
                                     Rectangle().fill(selectedTab == row ? Color.cyan : Color.gray)
                                         .frame(height: 3)
-                                }.fixedSize()
+                                }
+                                .fixedSize()
                             })
 //                                .accentColor(Color.white)
                                 .buttonStyle(PlainButtonStyle())
@@ -55,6 +56,7 @@ struct Tabs: View {
                 }
             }
         }
+        // TODO: check this
         .frame(height: 55)
         .onAppear(perform: {
             UIScrollView.appearance().bounces = fixed ? false : true

@@ -17,7 +17,7 @@ import SwiftUI
 
 struct OrderBookView: View {
 	var sell: [Decimal] = [
-		100,
+		10000,
 		200,
 		300,
 		400,
@@ -52,7 +52,7 @@ struct OrderBookView: View {
 		1000,
 		1100,
 		1200,
-		1300,
+		100,
 		1400,
 		1500,
 		1600,
@@ -61,50 +61,61 @@ struct OrderBookView: View {
 		1900,
 		2000,
 	]
+    var totalSell: Decimal {
+        return sell.reduce(0, +)
+    }
+    var totalBuy: Decimal {
+        return buy.reduce(0, +)
+    }
+
+	var geoWidth: CGFloat
+
+	init(geoWidth: CGFloat) {
+		self.geoWidth = geoWidth
+	}
 
 	var body: some View {
-		GeometryReader { geo in
-			// Header view with Qty, Price(USD), Qty labels
-			// Scrollable view with 20 buy items and 20 sell items
+        // Header view with Qty, Price(USD), Qty labels
+        // Scrollable view with 20 buy items and 20 sell items
 
-			// Header view
+        // Header view
+        VStack {
             VStack {
-                VStack {
-                    HStack {
-                        Text("Qty").foregroundColor(.secondary)
-                        Spacer()
-                        Text("Price(USD)").foregroundColor(.secondary)
-                        Spacer()
-                        Text("Qty").foregroundColor(.secondary)
-                    }
-                    .padding(.horizontal, 20)
-                    .frame(width: geo.size.width, height: 50, alignment: .center)
+                HStack {
+                    Text("Qty").foregroundColor(.secondary)
+                    Spacer()
+                    Text("Price(USD)").foregroundColor(.secondary)
+                    Spacer()
+                    Text("Qty").foregroundColor(.secondary)
                 }
+                .padding(.horizontal, 20)
+//                    .frame(width: geoWidth, height: 50, alignment: .center)
+            }
 
-                // Scrollable view
-                ScrollView {
-                    VStack {
-                        ForEach(0..<sell.count) { i in
-                            OrderBookItemView(
-								totalSellVolume: sell.reduce(0, +),
-								totalBuyVolume: buy.reduce(0, +),
-								buyVolume: buy[i],
-								accumulatedBuyVolume: buy[0..<i].reduce(0, +),
-								buyPrice: 1000,
-								sellPrice: 1000,
-								sellVolume: sell[i],
-								accumulatedSellVolume: sell[0..<i].reduce(0, +)
-							)
-                        }
+            // Scrollable view
+            ScrollView(.vertical, showsIndicators: false) {
+                LazyVStack(spacing: 0) {
+                    ForEach(0..<sell.count) { i in
+                        OrderBookItemView(
+                            viewWidth: geoWidth,
+                            totalSellVolume: totalSell,
+                            totalBuyVolume: totalBuy,
+                            buyVolume: buy[i],
+                            accumulatedBuyVolume: buy[0...i].reduce(0, +),
+                            buyPrice: 1000,
+                            sellPrice: 1000,
+                            sellVolume: sell[i],
+                            accumulatedSellVolume: sell[0...i].reduce(0, +)
+                        ).frame(height: 50)
                     }
                 }
             }
-		}
-	}
+        }
+    }
 }
 
 struct OrderBookView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderBookView()
+        OrderBookView(geoWidth: 400)
     }
 }

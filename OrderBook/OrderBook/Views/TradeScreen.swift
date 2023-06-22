@@ -29,7 +29,7 @@ public struct TradeScreen: View {
                	// Views
                	TabView(selection: $selectedTab,
                     content: {
-                        OrderBookView().tag(0)
+                        OrderBookView(geoWidth: geo.size.width).tag(0)
                 		RecentTradeView().tag(1)
                		})
                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
