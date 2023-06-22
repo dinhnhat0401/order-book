@@ -44,6 +44,6 @@ final class RepositoriesTests: XCTestCase {
 		} catch {
 			print(error)
 		}
-        XCTWaiter.wait(for: [expectation], timeout: 100)
+        await fulfillment(of: [expectation], timeout: 100)
     }
 }

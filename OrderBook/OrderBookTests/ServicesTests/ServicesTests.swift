@@ -36,7 +36,6 @@ final class ServicesTests: XCTestCase {
 		} catch {
 			print(error)
 		}
-//        await fulfillment(of: [expectation])
-       XCTWaiter.wait(for: [expectation], timeout: 100)
+        await fulfillment(of: [expectation], timeout: 100)
 	}
 }

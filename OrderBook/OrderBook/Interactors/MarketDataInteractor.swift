@@ -12,8 +12,8 @@ import Repositories
 public protocol MarketDataInteractorProtocol {
     func connect()
     func disconnect()
-//    func subscribe(topics: [Topic]) -> AsyncStream<any MarketDataResponseProtocol>
     func unsubscribe(topics: [Topic])
+	func stream() -> AsyncThrowingStream<MarketDataResponseProtocol, Error> // TODO: rename this?
 }
 
 final class MarketDataInteractor: MarketDataInteractorProtocol {
@@ -31,9 +31,9 @@ final class MarketDataInteractor: MarketDataInteractorProtocol {
 		repository.disconnect()
 	}
 
-//	func subscribe(topics: [Topic]) -> AsyncStream<any MarketDataResponseProtocol> {
-////		repository.subscribe(topics: topics)
-//	}
+	func stream() -> AsyncThrowingStream<MarketDataResponseProtocol, Error> {
+		return repository.stream()
+	}
 
 	func unsubscribe(topics: [Topic]) {
 		repository.unsubscribe(topics: topics)

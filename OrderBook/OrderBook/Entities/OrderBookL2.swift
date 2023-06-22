@@ -24,7 +24,7 @@ public struct OrderBookL2Data: Decodable {
     let id: UInt64
     let side: Side
     let size: UInt64
-    let price: Double
+    let price: Decimal
     let timestamp: String
 
     enum CodingKeys: String, CodingKey {

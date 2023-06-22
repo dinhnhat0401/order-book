@@ -43,37 +43,6 @@ final class MarketDataRepository: MarketDataRepositoryProtocol {
         let topicArgs = topics.map { $0.rawValue }
         // TODO: no force
         try! self.service.subscribe(topicArgs: topicArgs)
-
-//		// Create AsyncStream<any MarketDataResponseProtocol> from service.subscribe(topicArgs: topicArgs) using continuation
-//		return AsyncStream<any MarketDataResponseProtocol> { continuation in
-//            // TODO: no force cast
-//			_ = try! self.service.subscribe(topicArgs: topicArgs).map { message in
-//				// Convert message string to Data
-//				guard let message = message as? String, let data = message.data(using: .utf8) else {
-////					continuation.finish(throwing: MarketDataRepository.MarketDataRepositoryError.unknown)
-//					return
-//				}
-//				let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
-//				let table = (json?["table"] as? String) ?? ""
-//				guard table == "orderBookL2" else {
-//					// Decode message to Trade
-//					guard let decodedTrade = try? JSONDecoder().decode(Trade.self, from: data) else {
-//						// continuation.finish(throwing: MarketDataRepository.MarketDataRepositoryError.unknown)
-//						return
-//					}
-//					// and yield it
-//					continuation.yield(decodedTrade as MarketDataResponseProtocol)
-//					return
-//				}
-//				// Decode message to OrderBookL2
-//				guard let decodedOrderBookL2 = try? JSONDecoder().decode(OrderBookL2.self, from: data) else {
-//					// continuation.finish(throwing: MarketDataRepository.MarketDataRepositoryError.unknown)
-//					return
-//				}
-//				// and yield it
-//				continuation.yield(decodedOrderBookL2 as MarketDataResponseProtocol)
-//			}
-//		}
 	}
 
 	func unsubscribe(topics: [Topic]) {

@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		842383312A444D54001E0BD0 /* TradeScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423832F2A444D4F001E0BD0 /* TradeScreen.swift */; };
+		842383342A446784001E0BD0 /* TabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842383322A446755001E0BD0 /* TabView.swift */; };
+		842383392A446FDD001E0BD0 /* OrderBookView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842383352A446E71001E0BD0 /* OrderBookView.swift */; };
+		8423833A2A446FDF001E0BD0 /* RecentTradeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842383372A446E7D001E0BD0 /* RecentTradeView.swift */; };
+		8423833C2A4473AD001E0BD0 /* DecimalHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423833B2A4473AD001E0BD0 /* DecimalHelper.swift */; };
+		8423833D2A4474D2001E0BD0 /* DecimalHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423833B2A4473AD001E0BD0 /* DecimalHelper.swift */; };
+		842383402A447C9B001E0BD0 /* OrderBookItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423833E2A4475E0001E0BD0 /* OrderBookItemView.swift */; };
 		844830572A407C4100367567 /* OrderBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844830562A407C4100367567 /* OrderBookApp.swift */; };
 		844830592A407C4100367567 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844830582A407C4100367567 /* ContentView.swift */; };
 		8448305B2A407C4700367567 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8448305A2A407C4700367567 /* Assets.xcassets */; };
@@ -245,6 +252,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		8423832F2A444D4F001E0BD0 /* TradeScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeScreen.swift; sourceTree = "<group>"; };
+		842383322A446755001E0BD0 /* TabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabView.swift; sourceTree = "<group>"; };
+		842383352A446E71001E0BD0 /* OrderBookView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookView.swift; sourceTree = "<group>"; };
+		842383372A446E7D001E0BD0 /* RecentTradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTradeView.swift; sourceTree = "<group>"; };
+		8423833B2A4473AD001E0BD0 /* DecimalHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalHelper.swift; sourceTree = "<group>"; };
+		8423833E2A4475E0001E0BD0 /* OrderBookItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookItemView.swift; sourceTree = "<group>"; };
 		844830532A407C4100367567 /* OrderBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrderBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		844830562A407C4100367567 /* OrderBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookApp.swift; sourceTree = "<group>"; };
 		844830582A407C4100367567 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -519,6 +532,12 @@
 			children = (
 				844830CC2A407F9900367567 /* Views.h */,
 				844830CD2A407F9900367567 /* Views.docc */,
+				8423832F2A444D4F001E0BD0 /* TradeScreen.swift */,
+				842383322A446755001E0BD0 /* TabView.swift */,
+				842383352A446E71001E0BD0 /* OrderBookView.swift */,
+				842383372A446E7D001E0BD0 /* RecentTradeView.swift */,
+				8423833B2A4473AD001E0BD0 /* DecimalHelper.swift */,
+				8423833E2A4475E0001E0BD0 /* OrderBookItemView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1160,6 +1179,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				844830592A407C4100367567 /* ContentView.swift in Sources */,
+				8423833C2A4473AD001E0BD0 /* DecimalHelper.swift in Sources */,
 				848CB4D02A40986D0097B017 /* MarketDataInteractor.swift in Sources */,
 				844830572A407C4100367567 /* OrderBookApp.swift in Sources */,
 			);
@@ -1202,6 +1222,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8423833A2A446FDF001E0BD0 /* RecentTradeView.swift in Sources */,
+				8423833D2A4474D2001E0BD0 /* DecimalHelper.swift in Sources */,
+				842383402A447C9B001E0BD0 /* OrderBookItemView.swift in Sources */,
+				842383392A446FDD001E0BD0 /* OrderBookView.swift in Sources */,
+				842383312A444D54001E0BD0 /* TradeScreen.swift in Sources */,
+				842383342A446784001E0BD0 /* TabView.swift in Sources */,
 				844830CE2A407F9900367567 /* Views.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
