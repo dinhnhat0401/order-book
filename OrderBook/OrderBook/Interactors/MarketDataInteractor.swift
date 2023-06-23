@@ -8,6 +8,7 @@
 import Foundation
 import Entities
 import Repositories
+import Factory
 
 public protocol MarketDataInteractorProtocol {
     func connect()
@@ -16,26 +17,25 @@ public protocol MarketDataInteractorProtocol {
 	func stream() -> AsyncThrowingStream<MarketDataResponseProtocol, Error> // TODO: rename this?
 }
 
-final class MarketDataInteractor: MarketDataInteractorProtocol {
-	private let repository: MarketDataRepositoryProtocol
+public final class MarketDataInteractor: MarketDataInteractorProtocol {
+    @Injected(\.marketDataRepository) var repository: MarketDataRepositoryProtocol
 
-	init(repository: MarketDataRepositoryProtocol) {
-		self.repository = repository
+	public init() {
 	}
 
-	func connect() {
+	public func connect() {
 		repository.connect()
 	}
 
-	func disconnect() {
+    public func disconnect() {
 		repository.disconnect()
 	}
 
-	func stream() -> AsyncThrowingStream<MarketDataResponseProtocol, Error> {
+    public func stream() -> AsyncThrowingStream<MarketDataResponseProtocol, Error> {
 		return repository.stream()
 	}
 
-	func unsubscribe(topics: [Topic]) {
+    public func unsubscribe(topics: [Topic]) {
 		repository.unsubscribe(topics: topics)
 	}
 }

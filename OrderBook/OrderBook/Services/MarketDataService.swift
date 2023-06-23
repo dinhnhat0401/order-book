@@ -17,26 +17,26 @@ public protocol MarketDataServiceProtocol {
     func stream() -> AsyncThrowingStream<String, Error>
 }
 
-final class MarketDataService: MarketDataServiceProtocol {
+public final class MarketDataService: MarketDataServiceProtocol {
     private let socket: any WebSocketStreamProtocol
 	private var isConnected = false
 
-    init(socket: any WebSocketStreamProtocol) {
+    public init(socket: any WebSocketStreamProtocol) {
 		self.socket = socket
 	}
 
-	func connect() {
+    public func connect() {
 		socket.connect()
 		isConnected = true
 	}
 
-	func disconnect() {
+    public func disconnect() {
 		socket.disconnect()
 		isConnected = false
 	}
 
 //    func subscribe(topicArgs: [String]) throws -> AsyncThrowingStream<URLSessionWebSocketTask.Message, Error>.Iterator {
-    func subscribe(topicArgs: [String]) throws {
+    public func subscribe(topicArgs: [String]) throws {
 //		guard isConnected else {
 //            throw MarketDataServiceError.notConnected
 //		}
@@ -49,14 +49,14 @@ final class MarketDataService: MarketDataServiceProtocol {
 //        return socket.makeAsyncIterator()
 	}
 
-	func unsubscribe(topicArgs: String) {
+    public func unsubscribe(topicArgs: String) {
 		guard isConnected else {
 			return
 		}
 		socket.send("{\"op\": \"unsubscribe\", \"args\": \(topicArgs)}")
 	}
 
-	func stream() -> AsyncThrowingStream<String, Error> {
+    public func stream() -> AsyncThrowingStream<String, Error> {
 		return AsyncThrowingStream { continuation in
             Task {
                 // TODO: check this
@@ -79,23 +79,23 @@ final class MarketDataService: MarketDataServiceProtocol {
 	}
 }
 
-protocol WebSocketStreamProtocol: AsyncSequence {
+public protocol WebSocketStreamProtocol: AsyncSequence {
     func connect()
     func disconnect()
 	func makeAsyncIterator() -> AsyncThrowingStream<URLSessionWebSocketTask.Message, Error>.Iterator
 	func send(_ message: String)
 }
 
-class WebSocketStream: WebSocketStreamProtocol {
+public class WebSocketStream: WebSocketStreamProtocol {
 
-    typealias Element = URLSessionWebSocketTask.Message
-    typealias AsyncIterator = AsyncThrowingStream<URLSessionWebSocketTask.Message, Error>.Iterator
+    public typealias Element = URLSessionWebSocketTask.Message
+    public typealias AsyncIterator = AsyncThrowingStream<URLSessionWebSocketTask.Message, Error>.Iterator
 
 	private var stream: AsyncThrowingStream<Element, Error>?
     private var continuation: AsyncThrowingStream<Element, Error>.Continuation?
     private let socket: URLSessionWebSocketTask
 
-	init(url: String, session: URLSession = URLSession.shared) {
+	public init(url: String, session: URLSession = URLSession.shared) {
         socket = session.webSocketTask(with: URL(string: url)!)
         stream = AsyncThrowingStream { continuation in
             self.continuation = continuation
@@ -105,15 +105,15 @@ class WebSocketStream: WebSocketStreamProtocol {
         }
     }
 
-    func connect() {
+    public func connect() {
         socket.resume()
     }
 
-	func disconnect() {
+    public func disconnect() {
 		socket.cancel()
 	}
 
-	func makeAsyncIterator() -> AsyncIterator {
+    public func makeAsyncIterator() -> AsyncIterator {
 		guard let stream = stream else {
 			fatalError("stream was not initialized")
 		}
@@ -122,7 +122,7 @@ class WebSocketStream: WebSocketStreamProtocol {
 		return stream.makeAsyncIterator()
 	}
 
-	func send(_ message: String) {
+    public func send(_ message: String) {
 		socket.send(.string(message)) { error in
 			if let error = error {
 				self.continuation?.finish(throwing: error)

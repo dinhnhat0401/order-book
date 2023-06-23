@@ -14,6 +14,19 @@
 		8423833C2A4473AD001E0BD0 /* DecimalHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423833B2A4473AD001E0BD0 /* DecimalHelper.swift */; };
 		8423833D2A4474D2001E0BD0 /* DecimalHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423833B2A4473AD001E0BD0 /* DecimalHelper.swift */; };
 		842383402A447C9B001E0BD0 /* OrderBookItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423833E2A4475E0001E0BD0 /* OrderBookItemView.swift */; };
+		842383422A448EDD001E0BD0 /* OrderBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842383412A448EDD001E0BD0 /* OrderBookViewModel.swift */; };
+		842383442A448EFA001E0BD0 /* TradeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842383432A448EFA001E0BD0 /* TradeViewModel.swift */; };
+		842383462A448F0A001E0BD0 /* RecentTradeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842383452A448F0A001E0BD0 /* RecentTradeViewModel.swift */; };
+		842383482A448F29001E0BD0 /* OrderBookItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842383472A448F29001E0BD0 /* OrderBookItemViewModel.swift */; };
+		842383572A45C276001E0BD0 /* App+Inject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842383562A45C276001E0BD0 /* App+Inject.swift */; };
+		8423835A2A45C6E5001E0BD0 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 842383592A45C6E5001E0BD0 /* Factory */; };
+		8423835B2A45C786001E0BD0 /* MarketDataInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CB4CF2A40986D0097B017 /* MarketDataInteractor.swift */; };
+		8423835E2A45C854001E0BD0 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 8423835D2A45C854001E0BD0 /* Factory */; };
+		842383612A45CB6A001E0BD0 /* Injection+Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423835F2A45CB43001E0BD0 /* Injection+Repo.swift */; };
+		842383642A45CBE3001E0BD0 /* Injection+Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842383622A45CBA4001E0BD0 /* Injection+Service.swift */; };
+		842383662A45CC55001E0BD0 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 842383652A45CC55001E0BD0 /* Factory */; };
+		842383692A45CD15001E0BD0 /* Injection+Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842383672A45CC9E001E0BD0 /* Injection+Interactor.swift */; };
+		8423836B2A45CD37001E0BD0 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 8423836A2A45CD37001E0BD0 /* Factory */; };
 		844830572A407C4100367567 /* OrderBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844830562A407C4100367567 /* OrderBookApp.swift */; };
 		844830592A407C4100367567 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844830582A407C4100367567 /* ContentView.swift */; };
 		8448305B2A407C4700367567 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8448305A2A407C4700367567 /* Assets.xcassets */; };
@@ -62,13 +75,19 @@
 		848CB4C42A40978D0097B017 /* Services.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848CB4AF2A40978C0097B017 /* Services.framework */; };
 		848CB4C52A40978D0097B017 /* Services.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 848CB4AF2A40978C0097B017 /* Services.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		848CB4CE2A40985C0097B017 /* MarketDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CB4CC2A4098410097B017 /* MarketDataService.swift */; };
-		848CB4D02A40986D0097B017 /* MarketDataInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CB4CF2A40986D0097B017 /* MarketDataInteractor.swift */; };
 		848CB4D42A409B6E0097B017 /* Topic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CB4D32A409B6E0097B017 /* Topic.swift */; };
 		848CB4D52A41DFC30097B017 /* MarketDataRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CB4D12A4098760097B017 /* MarketDataRepository.swift */; };
 		848CB4E02A41E4AE0097B017 /* MarketData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CB4DE2A41E4A60097B017 /* MarketData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		842383492A448F5B001E0BD0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8448304B2A407C4100367567 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 848CB4892A4096960097B017;
+			remoteInfo = Interactors;
+		};
 		844830642A407C4700367567 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 8448304B2A407C4100367567 /* Project object */;
@@ -258,6 +277,14 @@
 		842383372A446E7D001E0BD0 /* RecentTradeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTradeView.swift; sourceTree = "<group>"; };
 		8423833B2A4473AD001E0BD0 /* DecimalHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecimalHelper.swift; sourceTree = "<group>"; };
 		8423833E2A4475E0001E0BD0 /* OrderBookItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookItemView.swift; sourceTree = "<group>"; };
+		842383412A448EDD001E0BD0 /* OrderBookViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookViewModel.swift; sourceTree = "<group>"; };
+		842383432A448EFA001E0BD0 /* TradeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeViewModel.swift; sourceTree = "<group>"; };
+		842383452A448F0A001E0BD0 /* RecentTradeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentTradeViewModel.swift; sourceTree = "<group>"; };
+		842383472A448F29001E0BD0 /* OrderBookItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookItemViewModel.swift; sourceTree = "<group>"; };
+		842383562A45C276001E0BD0 /* App+Inject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "App+Inject.swift"; sourceTree = "<group>"; };
+		8423835F2A45CB43001E0BD0 /* Injection+Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Injection+Repo.swift"; sourceTree = "<group>"; };
+		842383622A45CBA4001E0BD0 /* Injection+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Injection+Service.swift"; sourceTree = "<group>"; };
+		842383672A45CC9E001E0BD0 /* Injection+Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Injection+Interactor.swift"; sourceTree = "<group>"; };
 		844830532A407C4100367567 /* OrderBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrderBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		844830562A407C4100367567 /* OrderBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookApp.swift; sourceTree = "<group>"; };
 		844830582A407C4100367567 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -316,6 +343,7 @@
 			files = (
 				844830BD2A407F7600367567 /* ViewModels.framework in Frameworks */,
 				848CB49F2A4096970097B017 /* Interactors.framework in Frameworks */,
+				8423835A2A45C6E5001E0BD0 /* Factory in Frameworks */,
 				844830DF2A407F9900367567 /* Views.framework in Frameworks */,
 				848CB47D2A4096890097B017 /* Repositories.framework in Frameworks */,
 				848CB4C42A40978D0097B017 /* Services.framework in Frameworks */,
@@ -341,6 +369,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8423836B2A45CD37001E0BD0 /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -386,6 +415,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842383662A45CC55001E0BD0 /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -401,6 +431,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8423835E2A45C854001E0BD0 /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +461,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		842383552A45C25A001E0BD0 /* Dependency */ = {
+			isa = PBXGroup;
+			children = (
+				842383562A45C276001E0BD0 /* App+Inject.swift */,
+			);
+			path = Dependency;
+			sourceTree = "<group>";
+		};
+		8423835C2A45C854001E0BD0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8448304A2A407C4100367567 = {
 			isa = PBXGroup;
 			children = (
@@ -437,6 +483,7 @@
 				844830662A407C4700367567 /* OrderBookTests */,
 				844830702A407C4700367567 /* OrderBookUITests */,
 				844830542A407C4100367567 /* Products */,
+				8423835C2A45C854001E0BD0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -465,6 +512,7 @@
 		844830552A407C4100367567 /* OrderBook */ = {
 			isa = PBXGroup;
 			children = (
+				842383552A45C25A001E0BD0 /* Dependency */,
 				844830A92A407F7600367567 /* ViewModels */,
 				844830CB2A407F9900367567 /* Views */,
 				848CB4432A4096440097B017 /* Entities */,
@@ -515,6 +563,11 @@
 			children = (
 				844830AA2A407F7600367567 /* ViewModels.h */,
 				844830AB2A407F7600367567 /* ViewModels.docc */,
+				842383412A448EDD001E0BD0 /* OrderBookViewModel.swift */,
+				842383432A448EFA001E0BD0 /* TradeViewModel.swift */,
+				842383452A448F0A001E0BD0 /* RecentTradeViewModel.swift */,
+				842383472A448F29001E0BD0 /* OrderBookItemViewModel.swift */,
+				842383672A45CC9E001E0BD0 /* Injection+Interactor.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -579,6 +632,7 @@
 				848CB46A2A4096890097B017 /* Repositories.h */,
 				848CB46B2A4096890097B017 /* Repositories.docc */,
 				848CB4D12A4098760097B017 /* MarketDataRepository.swift */,
+				842383622A45CBA4001E0BD0 /* Injection+Service.swift */,
 			);
 			path = Repositories;
 			sourceTree = "<group>";
@@ -597,6 +651,7 @@
 				848CB48C2A4096960097B017 /* Interactors.h */,
 				848CB48D2A4096960097B017 /* Interactors.docc */,
 				848CB4CF2A40986D0097B017 /* MarketDataInteractor.swift */,
+				8423835F2A45CB43001E0BD0 /* Injection+Repo.swift */,
 			);
 			path = Interactors;
 			sourceTree = "<group>";
@@ -701,6 +756,9 @@
 				848CB4C32A40978D0097B017 /* PBXTargetDependency */,
 			);
 			name = OrderBook;
+			packageProductDependencies = (
+				842383592A45C6E5001E0BD0 /* Factory */,
+			);
 			productName = OrderBook;
 			productReference = 844830532A407C4100367567 /* OrderBook.app */;
 			productType = "com.apple.product-type.application";
@@ -753,8 +811,12 @@
 			buildRules = (
 			);
 			dependencies = (
+				8423834A2A448F5B001E0BD0 /* PBXTargetDependency */,
 			);
 			name = ViewModels;
+			packageProductDependencies = (
+				8423836A2A45CD37001E0BD0 /* Factory */,
+			);
 			productName = ViewModels;
 			productReference = 844830A82A407F7600367567 /* ViewModels.framework */;
 			productType = "com.apple.product-type.framework";
@@ -868,6 +930,9 @@
 				848CB4D72A41DFCE0097B017 /* PBXTargetDependency */,
 			);
 			name = Repositories;
+			packageProductDependencies = (
+				842383652A45CC55001E0BD0 /* Factory */,
+			);
 			productName = Repositories;
 			productReference = 848CB4682A4096890097B017 /* Repositories.framework */;
 			productType = "com.apple.product-type.framework";
@@ -906,6 +971,9 @@
 				848CB4A92A4097730097B017 /* PBXTargetDependency */,
 			);
 			name = Interactors;
+			packageProductDependencies = (
+				8423835D2A45C854001E0BD0 /* Factory */,
+			);
 			productName = Interactors;
 			productReference = 848CB48A2A4096960097B017 /* Interactors.framework */;
 			productType = "com.apple.product-type.framework";
@@ -1040,6 +1108,9 @@
 				Base,
 			);
 			mainGroup = 8448304A2A407C4100367567;
+			packageReferences = (
+				842383582A45C6E5001E0BD0 /* XCRemoteSwiftPackageReference "Factory" */,
+			);
 			productRefGroup = 844830542A407C4100367567 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1180,7 +1251,7 @@
 			files = (
 				844830592A407C4100367567 /* ContentView.swift in Sources */,
 				8423833C2A4473AD001E0BD0 /* DecimalHelper.swift in Sources */,
-				848CB4D02A40986D0097B017 /* MarketDataInteractor.swift in Sources */,
+				842383572A45C276001E0BD0 /* App+Inject.swift in Sources */,
 				844830572A407C4100367567 /* OrderBookApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1206,6 +1277,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842383692A45CD15001E0BD0 /* Injection+Interactor.swift in Sources */,
+				842383442A448EFA001E0BD0 /* TradeViewModel.swift in Sources */,
+				842383482A448F29001E0BD0 /* OrderBookItemViewModel.swift in Sources */,
+				842383422A448EDD001E0BD0 /* OrderBookViewModel.swift in Sources */,
+				842383462A448F0A001E0BD0 /* RecentTradeViewModel.swift in Sources */,
 				844830AC2A407F7600367567 /* ViewModels.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1267,6 +1343,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				848CB46C2A4096890097B017 /* Repositories.docc in Sources */,
+				842383642A45CBE3001E0BD0 /* Injection+Service.swift in Sources */,
 				848CB4D52A41DFC30097B017 /* MarketDataRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1283,6 +1360,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842383612A45CB6A001E0BD0 /* Injection+Repo.swift in Sources */,
+				8423835B2A45C786001E0BD0 /* MarketDataInteractor.swift in Sources */,
 				848CB48E2A4096960097B017 /* Interactors.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1315,6 +1394,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		8423834A2A448F5B001E0BD0 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 848CB4892A4096960097B017 /* Interactors */;
+			targetProxy = 842383492A448F5B001E0BD0 /* PBXContainerItemProxy */;
+		};
 		844830652A407C4700367567 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 844830522A407C4100367567 /* OrderBook */;
@@ -2407,6 +2491,40 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		842383582A45C6E5001E0BD0 /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:hmlongco/Factory.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		842383592A45C6E5001E0BD0 /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 842383582A45C6E5001E0BD0 /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
+		};
+		8423835D2A45C854001E0BD0 /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 842383582A45C6E5001E0BD0 /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
+		};
+		842383652A45CC55001E0BD0 /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 842383582A45C6E5001E0BD0 /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
+		};
+		8423836A2A45CD37001E0BD0 /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 842383582A45C6E5001E0BD0 /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8448304B2A407C4100367567 /* Project object */;
 }

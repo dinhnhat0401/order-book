@@ -8,6 +8,7 @@
 import Foundation
 import Entities
 import Services
+import Factory
 
 public protocol MarketDataRepositoryProtocol {
     func connect()
@@ -17,25 +18,23 @@ public protocol MarketDataRepositoryProtocol {
     func stream() -> AsyncThrowingStream<MarketDataResponseProtocol, Error>
 }
 
-final class MarketDataRepository: MarketDataRepositoryProtocol {
-	private let service: MarketDataServiceProtocol
+public final class MarketDataRepository: MarketDataRepositoryProtocol {
+    @Injected(\.marketDataService) private var service: MarketDataServiceProtocol
 	private var isConnected = false
 
-	init(service: MarketDataServiceProtocol) {
-		self.service = service
-	}
+    public init() {}
 
-	func connect() {
+    public func connect() {
 		service.connect()
 		isConnected = true
 	}
 
-	func disconnect() {
+    public func disconnect() {
 		service.disconnect()
 		isConnected = false
 	}
 
-	func subscribe(topics: [Topic]) {
+    public func subscribe(topics: [Topic]) {
 		guard isConnected else {
             // TODO: throw error here
 			fatalError("Not connected")
@@ -45,7 +44,7 @@ final class MarketDataRepository: MarketDataRepositoryProtocol {
         try! self.service.subscribe(topicArgs: topicArgs)
 	}
 
-	func unsubscribe(topics: [Topic]) {
+    public func unsubscribe(topics: [Topic]) {
 		guard isConnected else {
 			return
 		}
@@ -53,7 +52,7 @@ final class MarketDataRepository: MarketDataRepositoryProtocol {
 		service.unsubscribe(topicArgs: topicArgs)
 	}
 
-	func stream() -> AsyncThrowingStream<MarketDataResponseProtocol, Error> {
+    public func stream() -> AsyncThrowingStream<MarketDataResponseProtocol, Error> {
 		return AsyncThrowingStream { continuation in
             Task {
                 for try await message in self.service.stream() {
