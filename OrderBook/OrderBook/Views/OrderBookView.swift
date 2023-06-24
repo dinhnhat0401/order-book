@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import ViewModels
 
 // Subscribe topic to receive order-book data via web-socket from BitMEX.
 // size in BitMEX and qty in AQX are equal concept.
@@ -15,64 +16,14 @@ import SwiftUI
 // Place 20 “sell” items sorted in ascending order at right.
 // Draw relative volume of accumulated size s in the background of each rows.
 
-struct OrderBookView: View {
-	var sell: [Decimal] = [
-		10000,
-		200,
-		300,
-		400,
-		500,
-		600,
-		700,
-		800,
-		900,
-		1000,
-		1100,
-		1200,
-		1300,
-		1400,
-		1500,
-		1600,
-		1700,
-		1800,
-		1900,
-		2000,
-	]
+struct OrderBookView<ViewModel>: View where ViewModel: OrderBookViewModelProtocol {
 
-	var buy: [Decimal] = [
-		100,
-		200,
-		300,
-		400,
-		500,
-		600,
-		700,
-		800,
-		900,
-		1000,
-		1100,
-		1200,
-		100,
-		1400,
-		1500,
-		1600,
-		1700,
-		1800,
-		1900,
-		2000,
-	]
-    var totalSell: Decimal {
-        return sell.reduce(0, +)
-    }
-    var totalBuy: Decimal {
-        return buy.reduce(0, +)
-    }
+	@StateObject var viewModel: ViewModel
+    var geoWidth: CGFloat
 
-	var geoWidth: CGFloat
-
-	init(geoWidth: CGFloat) {
-		self.geoWidth = geoWidth
-	}
+	// init(viewModel: ViewModel, geoWidth: CGFloat) {
+		
+	// }
 
 	var body: some View {
         // Header view with Qty, Price(USD), Qty labels
@@ -95,19 +46,9 @@ struct OrderBookView: View {
             // Scrollable view
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVStack(spacing: 0) {
-                    ForEach(0..<sell.count) { i in
-                        OrderBookItemView(
-                            viewWidth: geoWidth,
-                            totalSellVolume: totalSell,
-                            totalBuyVolume: totalBuy,
-                            buyVolume: buy[i],
-                            accumulatedBuyVolume: buy[0...i].reduce(0, +),
-                            buyPrice: 1000,
-                            sellPrice: 1000,
-                            sellVolume: sell[i],
-                            accumulatedSellVolume: sell[0...i].reduce(0, +)
-                        ).frame(height: 50)
-                    }
+					ForEach(viewModel.orderBookItems) { item in
+						OrderBookItemView(viewModel: item, viewWidth: geoWidth)
+					}
                 }
             }
         }
@@ -116,6 +57,6 @@ struct OrderBookView: View {
 
 struct OrderBookView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderBookView(geoWidth: 400)
+        OrderBookView(viewModel: OrderBookViewModel(), geoWidth: 400)
     }
 }

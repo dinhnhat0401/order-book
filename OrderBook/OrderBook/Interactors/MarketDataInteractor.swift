@@ -19,8 +19,12 @@ public protocol MarketDataInteractorProtocol {
 
 public final class MarketDataInteractor: MarketDataInteractorProtocol {
     @Injected(\.marketDataRepository) var repository: MarketDataRepositoryProtocol
+    private var sellSide: [OrderBookL2Data]
+    private var buySide: [OrderBookL2Data]
 
 	public init() {
+        sellSide = []
+        buySide = []
 	}
 
 	public func connect() {
@@ -32,7 +36,7 @@ public final class MarketDataInteractor: MarketDataInteractorProtocol {
 	}
 
     public func stream() -> AsyncThrowingStream<MarketDataResponseProtocol, Error> {
-		return repository.stream()
+        return repository.stream()
 	}
 
     public func unsubscribe(topics: [Topic]) {

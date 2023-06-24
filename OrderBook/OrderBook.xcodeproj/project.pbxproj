@@ -27,6 +27,7 @@
 		842383662A45CC55001E0BD0 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 842383652A45CC55001E0BD0 /* Factory */; };
 		842383692A45CD15001E0BD0 /* Injection+Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842383672A45CC9E001E0BD0 /* Injection+Interactor.swift */; };
 		8423836B2A45CD37001E0BD0 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 8423836A2A45CD37001E0BD0 /* Factory */; };
+		8423836D2A466EBD001E0BD0 /* TradeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423836C2A466EBD001E0BD0 /* TradeScreenViewModel.swift */; };
 		844830572A407C4100367567 /* OrderBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844830562A407C4100367567 /* OrderBookApp.swift */; };
 		844830592A407C4100367567 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844830582A407C4100367567 /* ContentView.swift */; };
 		8448305B2A407C4700367567 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8448305A2A407C4700367567 /* Assets.xcassets */; };
@@ -285,6 +286,7 @@
 		8423835F2A45CB43001E0BD0 /* Injection+Repo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Injection+Repo.swift"; sourceTree = "<group>"; };
 		842383622A45CBA4001E0BD0 /* Injection+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Injection+Service.swift"; sourceTree = "<group>"; };
 		842383672A45CC9E001E0BD0 /* Injection+Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Injection+Interactor.swift"; sourceTree = "<group>"; };
+		8423836C2A466EBD001E0BD0 /* TradeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeScreenViewModel.swift; sourceTree = "<group>"; };
 		844830532A407C4100367567 /* OrderBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrderBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		844830562A407C4100367567 /* OrderBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookApp.swift; sourceTree = "<group>"; };
 		844830582A407C4100367567 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -568,6 +570,7 @@
 				842383452A448F0A001E0BD0 /* RecentTradeViewModel.swift */,
 				842383472A448F29001E0BD0 /* OrderBookItemViewModel.swift */,
 				842383672A45CC9E001E0BD0 /* Injection+Interactor.swift */,
+				8423836C2A466EBD001E0BD0 /* TradeScreenViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -1280,6 +1283,7 @@
 				842383692A45CD15001E0BD0 /* Injection+Interactor.swift in Sources */,
 				842383442A448EFA001E0BD0 /* TradeViewModel.swift in Sources */,
 				842383482A448F29001E0BD0 /* OrderBookItemViewModel.swift in Sources */,
+				8423836D2A466EBD001E0BD0 /* TradeScreenViewModel.swift in Sources */,
 				842383422A448EDD001E0BD0 /* OrderBookViewModel.swift in Sources */,
 				842383462A448F0A001E0BD0 /* RecentTradeViewModel.swift in Sources */,
 				844830AC2A407F7600367567 /* ViewModels.docc in Sources */,

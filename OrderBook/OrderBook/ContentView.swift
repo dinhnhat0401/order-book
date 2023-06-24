@@ -7,10 +7,11 @@
 
 import SwiftUI
 import Views
+import ViewModels
 
 struct ContentView: View {
     var body: some View {
-        TradeScreen()
+        TradeScreen(viewModel: TradeScreenViewModel(orderBookViewModel: OrderBookViewModel()))
     }
 }
 

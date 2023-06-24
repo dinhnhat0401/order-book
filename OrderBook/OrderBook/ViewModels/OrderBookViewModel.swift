@@ -9,19 +9,20 @@ import Factory
 import Foundation
 import Interactors
 
-public protocol OrderBookViewModelProtocol {
-    var orderBookItems: [OrderBookItemViewModelProtocol] { get }
+public protocol OrderBookViewModelProtocol: ObservableObject {
+    var orderBookItems: [OrderBookItemViewModel] { get }
 }
 
-final class OrderBookViewModel: ObservableObject, OrderBookViewModelProtocol {
-    @Published var orderBookItems: [OrderBookItemViewModelProtocol] = []
+public final class OrderBookViewModel: OrderBookViewModelProtocol {
+    @Published public var orderBookItems: [OrderBookItemViewModel] = []
     @Injected(\.marketDataInteractor) private var marketDataInteractor: MarketDataInteractorProtocol
-//    private let orderBook: OrderBookProtocol
 
-    // init() {
-    //     self.orderBook = orderBook
-    //     self.orderBookItems = orderBook.orderBookItems.map { OrderBookItemViewModel(orderBookItem: $0) }
-    // }
+     public init() {
+//         self.orderBookItems = orderBook.orderBookItems.map { OrderBookItemViewModel(orderBookItem: $0) }
+         self.orderBookItems = [
+            OrderBookItemViewModel(orderBookItem: OrderBookItem(buyPrice: "30600", buySize: "0.04", buySizePercentage: 0.13, sellPrice: "31200", sellSize: "0.1", sellSizePercentage: 0.4))
+         ]
+     }
     func observeOrderBook() {
 //        orderBook.observeOrderBook { [weak self] orderBookItems in
 //            self?.orderBookItems = orderBookItems.map { OrderBookItemViewModel(orderBookItem: $0) }

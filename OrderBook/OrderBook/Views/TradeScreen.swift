@@ -7,8 +7,10 @@
 
 import Foundation
 import SwiftUI
+import ViewModels
 
-public struct TradeScreen: View {
+public struct TradeScreen<ViewModel>: View where ViewModel: TradeScreenViewModelProtocol {
+    @StateObject var viewModel: ViewModel
     @State private var selectedTab: Int = 0
 
     let tabs: [Tab] = [
@@ -16,8 +18,9 @@ public struct TradeScreen: View {
         .init(title: "Recent Trades"),
     ]
 
-    public init() {
-    }
+	public init(viewModel: ViewModel) {
+		self._viewModel = StateObject(wrappedValue: viewModel)
+	}
 
     public var body: some View {
         GeometryReader { geo in
@@ -29,7 +32,7 @@ public struct TradeScreen: View {
                	// Views
                	TabView(selection: $selectedTab,
                     content: {
-                        OrderBookView(geoWidth: geo.size.width).tag(0)
+                    OrderBookView(viewModel: viewModel.orderBookViewModel, geoWidth: geo.size.width).tag(0)
                 		RecentTradeView().tag(1)
                		})
                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
@@ -41,6 +44,6 @@ public struct TradeScreen: View {
 
 struct TradeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        TradeScreen()
+        TradeScreen(viewModel: TradeScreenViewModel(orderBookViewModel: OrderBookViewModel()))
     }
 }
