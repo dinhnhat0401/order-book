@@ -10,6 +10,7 @@ import Foundation
 import Entities
 import Repositories
 import Factory
+import UIKit
 
 public protocol MarketDataInteractorProtocol {
     func connect()
@@ -21,17 +22,25 @@ public protocol MarketDataInteractorProtocol {
 }
 
 public final class MarketDataInteractor: MarketDataInteractorProtocol {
-    @Injected(\.marketDataRepository) var repository: MarketDataRepositoryProtocol
-    private let increment: Decimal = 0.1
-    private var orderBookData: [Side: [Decimal: [OrderBookL2Data]]] = [:]
-	private var tradeData: [TradeItem] = []
     public var orderBookValueSubject = CurrentValueSubject<[OrderBookItem], Never>([])
     public var tradeValueSubject = CurrentValueSubject<[TradeItem], Never>([])
+    @Injected(\.marketDataRepository) private var repository: MarketDataRepositoryProtocol
+    private let increment: Decimal = 0.1
+    private var orderBookData: [Side: [Decimal: [OrderBookL2Data]]] = [:]
+    private var tradeData: [TradeItem] = []
+    private var cancellable = Set<AnyCancellable>()
 
 	public init() {
         orderBookData[.sell] = [:]
         orderBookData[.buy] = [:]
         streamData()
+
+		// clean data on memory warning
+		NotificationCenter.default.publisher(for: UIApplication.didReceiveMemoryWarningNotification)
+			.sink { [weak self] _ in
+				self?.clearData()
+			}
+			.store(in: &cancellable)
 	}
 
 	public func connect() {
@@ -173,6 +182,14 @@ public final class MarketDataInteractor: MarketDataInteractorProtocol {
         let size = accumulatedVolume / totalVolume
         return CGFloat(truncating: size as NSNumber)
     }
+}
+
+extension MarketDataInteractor {
+	// Handle memory warning
+	func clearData() {
+		orderBookData = [:]
+		tradeData = []
+	}
 }
 
 extension Collection {
