@@ -58,11 +58,6 @@ public final class MarketDataService: MarketDataServiceProtocol {
     public func stream() -> AsyncThrowingStream<String, Error> {
 		return AsyncThrowingStream { continuation in
             Task {
-                // TODO: check this
-                continuation.onTermination = { @Sendable [socket] _ in
-                    socket.disconnect()
-                }
-
                 for try await message in socket {
                     guard case .string(let text) = message else {
                         continue
