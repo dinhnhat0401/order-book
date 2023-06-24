@@ -62,13 +62,15 @@ public final class MarketDataInteractor: MarketDataInteractorProtocol {
                             size: Decimal($0.size),
                             timestamp: $0.timestamp)
                         }
-                        self.tradeData.insert(contentsOf: tradeItems, at: 0)
-                    case .partial, .delete, .update:
+                        self.tradeData.insert(contentsOf: tradeItems.prefix(30), at: 0)
+                        self.tradeData = Array(self.tradeData.prefix(30))
+                    case .partial:
+                        self.tradeData = []
+                    case .delete, .update:
                         break
                     }
 
                     // TODO: optimize this
-//                    continuation.yield(self.tradeData)
                     tradeValueSubject.send(self.tradeData)
                     continue
                 }
@@ -138,40 +140,10 @@ public final class MarketDataInteractor: MarketDataInteractorProtocol {
                         sellSizePercentage: calculateSize(totalBuyVolume: totalBuyVolume, totalSellVolume: totalSellVolume, accumulatedVolume: accumulatedSellVolume))
                     orderBookItems.append(orderBookItem)
                 }
-//                continuation.yield(orderBookItems)
                 orderBookValueSubject.send(orderBookItems)
             }
         }
 	}
-//
-//    public func streamRecentTrade() -> AsyncThrowingStream<[TradeItem], Error> {
-//        return AsyncThrowingStream { continuation in // TODO: weak self
-//            Task {
-//                for try await data in self.repository.stream() {
-//					guard let trade = data as? Trade else {
-//						continue
-//					}
-//
-//					switch trade.action {
-//					case .insert:
-//						// Map trade data to TradeItems
-//						let tradeItems = trade.data.map { TradeItem(
-//                            side: $0.side,
-//							price: $0.price,
-//                            size: Decimal($0.size),
-//							timestamp: $0.timestamp)
-//						}
-//						self.tradeData.insert(contentsOf: tradeItems, at: 0)
-//					case .partial, .delete, .update:
-//						break
-//					}
-//
-//					// TODO: optimize this
-//					continuation.yield(self.tradeData)
-//				}
-//            }
-//        }
-//    }
 
 	public func subscribe(topics: [String]) {
         repository.subscribe(topics: topics.compactMap({ Topic(rawValue: $0) }))

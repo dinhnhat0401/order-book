@@ -19,6 +19,7 @@ public protocol RecentTradeViewModelProtocol: ObservableObject {
 public final class RecentTradeViewModel: RecentTradeViewModelProtocol {
     @Published public var recentTradeViewModels: [TradeItemViewModel] = []
     @Injected(\.marketDataInteractor) private var marketDataInteractor: MarketDataInteractorProtocol
+    private var lastTimestamp = ""
     private var cancellable = Set<AnyCancellable>()
 
     public init(topic: String = "trade:XBTUSD") {
@@ -28,21 +29,7 @@ public final class RecentTradeViewModel: RecentTradeViewModelProtocol {
     }
 
     func observeRecentTrade() {
-//        Task { // TODO: weak self
-//			for try await recentTrade in marketDataInteractor.streamRecentTrade() {
-//                let recentTradeViewModels = recentTrade.map { tradeItem in
-//                    return TradeItemViewModel(
-//                        sideColor: tradeItem.side.color,
-//                        price: "\(tradeItem.price)",
-//                        size: "\(tradeItem.size)",
-//                        timestamp: tradeItem.timestamp)
-//                }
-//                Task { @MainActor in
-//                    self.recentTradeViewModels = recentTradeViewModels
-//                }
-//			}
-//        }
-
+        // TODO: weak self
         marketDataInteractor.tradeValueSubject.sink { recentTrade in
             let recentTradeViewModels = recentTrade.map { tradeItem in
                 return TradeItemViewModel(
@@ -50,17 +37,11 @@ public final class RecentTradeViewModel: RecentTradeViewModelProtocol {
                     price: "\(tradeItem.price)",
                     size: "\(tradeItem.size)",
                     timestamp: tradeItem.timestamp,
-                    fillBackground: true)
+                    fillBackground: tradeItem.timestamp > self.lastTimestamp)
             }
+            self.lastTimestamp = recentTrade.first?.timestamp ?? ""
             Task { @MainActor in
                 self.recentTradeViewModels = recentTradeViewModels
-//                // Do this after 0.2s
-//                try! await Task.sleep(nanoseconds: 2_000_000_000)
-//                self.recentTradeViewModels = self.recentTradeViewModels.map { vm in
-//					let noFillVM = vm
-//                    noFillVM.fillBackground = false
-//					return noFillVM
-//                }
             }
         }.store(in: &cancellable)
     }
