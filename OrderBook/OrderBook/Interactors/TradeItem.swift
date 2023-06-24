@@ -5,7 +5,6 @@
 //  Created by Đinh Văn Nhật on 2023/06/24.
 //
 
-// TODO: should this be in interactor or entities
 import Foundation
 import Entities
 

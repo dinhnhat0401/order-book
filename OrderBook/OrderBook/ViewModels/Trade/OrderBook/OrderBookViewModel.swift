@@ -23,7 +23,6 @@ public final class OrderBookViewModel: OrderBookViewModelProtocol {
     private var cancellable = Set<AnyCancellable>()
 
     public init() {
-        // TODO: skeleton or loading
         observeOrderBook()
     }
 

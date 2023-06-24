@@ -20,18 +20,11 @@ public struct Trade: MarketDataResponseProtocol, Decodable {
 }
 
 public struct TradeData: Decodable {
-    // TODO: remove unused properties
     public let timestamp: String
     public let symbol: String
     public let side: Side
     public let size: UInt64
     public let price: Decimal
-    let tickDirection: String
-    let trdMatchID: String
-    let grossValue: UInt64
-    let homeNotional: Double
-    let foreignNotional: Double
-    let trdType: String
 
     enum CodingKeys: String, CodingKey {
         case timestamp = "timestamp"
@@ -39,11 +32,5 @@ public struct TradeData: Decodable {
         case side = "side"
         case size = "size"
         case price = "price"
-        case tickDirection = "tickDirection"
-        case trdMatchID = "trdMatchID"
-        case grossValue = "grossValue"
-        case homeNotional = "homeNotional"
-        case foreignNotional = "foreignNotional"
-        case trdType = "trdType"
     }
 }

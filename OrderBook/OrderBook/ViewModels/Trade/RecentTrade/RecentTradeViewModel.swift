@@ -14,7 +14,7 @@ import SwiftUI
 
 public protocol RecentTradeViewModelProtocol: ObservableObject {
     var loading: Bool { get }
-    var recentTradeViewModels: [TradeItemViewModel] { get } // TODO: shoudl use protocol?
+    var recentTradeViewModels: [TradeItemViewModel] { get }
 	func subscribeTrade()
 }
 
@@ -34,19 +34,18 @@ public final class RecentTradeViewModel: RecentTradeViewModelProtocol {
     }
 
     func observeRecentTrade() {
-        // TODO: weak self
-        marketDataInteractor.tradeValueSubject.sink { recentTrade in
+        marketDataInteractor.tradeValueSubject.sink { [weak self] recentTrade in
             let recentTradeViewModels = recentTrade.map { tradeItem in
                 return TradeItemViewModel(
                     sideColor: tradeItem.side.color,
                     price: "\(tradeItem.price)",
                     size: "\(tradeItem.size)",
                     timestamp: tradeItem.timestamp,
-                    fillBackground: tradeItem.timestamp > self.lastTimestamp)
+                    fillBackground: tradeItem.timestamp > self?.lastTimestamp ?? "")
             }
-            self.lastTimestamp = recentTrade.first?.timestamp ?? ""
-            Task { @MainActor in
-                self.recentTradeViewModels = recentTradeViewModels
+            self?.lastTimestamp = recentTrade.first?.timestamp ?? ""
+            Task { @MainActor [weak self] in
+                self?.recentTradeViewModels = recentTradeViewModels
             }
         }.store(in: &cancellable)
     }
