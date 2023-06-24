@@ -13,8 +13,8 @@ public enum Action: String, Decodable {
     // 'update': Update a single row.
     // 'insert': Insert a new row.
     // 'delete': Delete a row.
-	case partial
-    case update
-	case insert
-    case delete
+	case partial = "partial"
+    case update = "update"
+	case insert = "insert"
+    case delete = "delete"
 }

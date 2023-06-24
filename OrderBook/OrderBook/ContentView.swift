@@ -11,7 +11,7 @@ import ViewModels
 
 struct ContentView: View {
     var body: some View {
-        TradeScreen(viewModel: TradeScreenViewModel(orderBookViewModel: OrderBookViewModel()))
+        TradeScreen(viewModel: TradeScreenViewModel())
     }
 }
 

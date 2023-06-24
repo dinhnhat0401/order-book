@@ -12,6 +12,6 @@ import Repositories
 extension Container {
     // Repositories
     var marketDataRepository: Factory<MarketDataRepositoryProtocol> {
-        Factory(self) { MarketDataRepository() }
+        Factory(self) { MarketDataRepository() }.scope(.singleton)
     }
 }

@@ -17,7 +17,6 @@ import ViewModels
 // Draw relative volume of accumulated size s in the background of each rows.
 
 struct OrderBookView<ViewModel>: View where ViewModel: OrderBookViewModelProtocol {
-
 	@StateObject var viewModel: ViewModel
     var geoWidth: CGFloat
 

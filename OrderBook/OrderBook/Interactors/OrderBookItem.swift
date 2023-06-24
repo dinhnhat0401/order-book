@@ -24,13 +24,4 @@ public struct OrderBookItem {
         self.sellSize = sellSize
         self.sellSizePercentage = sellSizePercentage
     }
-
-//    public init(buyOrder: OrderBookL2Data?, sellOrder: OrderBookL2Data?) {
-//        self.buyPrice = buyOrder?.price ?? ""
-//        self.buySize = buyOrder?.size ?? ""
-//        self.buySizePercentage = buyOrder?.sizePercentage ?? 0
-//        self.sellPrice = sellOrder?.price ?? ""
-//        self.sellSize = sellOrder?.size ?? ""
-//        self.sellSizePercentage = sellOrder?.sizePercentage ?? 0
-//    }
 }

@@ -23,7 +23,7 @@ public struct OrderBookL2Data: Decodable {
     public let symbol: String
     public let id: UInt64
     public let side: Side
-    public var size: UInt64
+    public var size: UInt64? /// Delete records don't have size.
     public var price: Decimal
     public var timestamp: String
 

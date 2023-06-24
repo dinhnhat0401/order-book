@@ -36,20 +36,7 @@ public final class OrderBookItemViewModel: ObservableObject, OrderBookItemViewMo
     @Published public var sellSizePercentage: Double = 0
     @Published public var sellSizeColor: Color = .red
 
-//    private let orderBookItem: OrderBookItem
-//
-//    public init(orderBookItem: OrderBookItem) {
-//        self.orderBookItem = orderBookItem
-//        self.buyPrice = orderBookItem.buyPrice
-//        self.buySize = orderBookItem.buySize
-//        self.buySizePercentage = orderBookItem.buySizePercentage
-//        self.sellPrice = orderBookItem.sellPrice
-//        self.sellSize = orderBookItem.sellSize
-//        self.sellSizePercentage = orderBookItem.sellSizePercentage
-//    }
-
 	public init(buyPrice: String, buySize: String, buySizePercentage: Double, sellPrice: String, sellSize: String, sellSizePercentage: Double) {
-//		self.orderBookItem = OrderBookItem(buyPrice: buyPrice, buySize: buySize, buySizePercentage: buySizePercentage, sellPrice: sellPrice, sellSize: sellSize, sellSizePercentage: sellSizePercentage)
 		self.buyPrice = buyPrice
 		self.buySize = buySize
 		self.buySizePercentage = buySizePercentage

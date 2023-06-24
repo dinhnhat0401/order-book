@@ -9,12 +9,16 @@ import Foundation
 
 public protocol TradeScreenViewModelProtocol: ObservableObject {
     var orderBookViewModel: OrderBookViewModel { get }
+    var recentTradeViewModel: RecentTradeViewModel { get }
 }
 
 public class TradeScreenViewModel: TradeScreenViewModelProtocol {
+    // TODO: protocol?
     public var orderBookViewModel: OrderBookViewModel
+    public var recentTradeViewModel: RecentTradeViewModel
 
-    public init(orderBookViewModel: OrderBookViewModel) {
-        self.orderBookViewModel = orderBookViewModel
+    public init() {
+        self.orderBookViewModel = OrderBookViewModel()
+        self.recentTradeViewModel = RecentTradeViewModel()
     }
 }

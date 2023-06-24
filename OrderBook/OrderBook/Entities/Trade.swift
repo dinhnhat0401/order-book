@@ -21,11 +21,11 @@ public struct Trade: MarketDataResponseProtocol, Decodable {
 
 public struct TradeData: Decodable {
     // TODO: remove unused properties
-    let timestamp: String
-    let symbol: String
-    let side: Side
-    let size: UInt64
-    let price: Decimal
+    public let timestamp: String
+    public let symbol: String
+    public let side: Side
+    public let size: UInt64
+    public let price: Decimal
     let tickDirection: String
     let trdMatchID: String
     let grossValue: UInt64

@@ -32,8 +32,8 @@ public struct TradeScreen<ViewModel>: View where ViewModel: TradeScreenViewModel
                	// Views
                	TabView(selection: $selectedTab,
                     content: {
-                    OrderBookView(viewModel: viewModel.orderBookViewModel, geoWidth: geo.size.width).tag(0)
-                		RecentTradeView().tag(1)
+                        OrderBookView(viewModel: viewModel.orderBookViewModel, geoWidth: geo.size.width).tag(0)
+                    RecentTradeView(viewModel: viewModel.recentTradeViewModel).tag(1)
                		})
                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
            }
@@ -44,6 +44,6 @@ public struct TradeScreen<ViewModel>: View where ViewModel: TradeScreenViewModel
 
 struct TradeScreen_Previews: PreviewProvider {
     static var previews: some View {
-        TradeScreen(viewModel: TradeScreenViewModel(orderBookViewModel: OrderBookViewModel()))
+        TradeScreen(viewModel: TradeScreenViewModel())
     }
 }

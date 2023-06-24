@@ -56,6 +56,9 @@ public final class MarketDataRepository: MarketDataRepositoryProtocol {
 		return AsyncThrowingStream { continuation in
             Task {
                 for try await message in self.service.stream() {
+                    if message.contains("delete") {
+                        print(message)
+                    }
                     // Convert message string to Data
                     guard let data = message.data(using: .utf8) else {
                         continuation.finish(throwing: MarketDataRepository.MarketDataRepositoryError.unknown)
