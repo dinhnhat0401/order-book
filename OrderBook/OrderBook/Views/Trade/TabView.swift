@@ -12,9 +12,7 @@ struct Tab {
     var title: String
 }
 
-// TODO: optimize
 struct Tabs: View {
-    var fixed = false
     var tabs: [Tab]
     var geoWidth: CGFloat
     @Binding var selectedTab: Int
@@ -37,15 +35,13 @@ struct Tabs: View {
                                             .foregroundColor(selectedTab == row ? Color.primary : Color.secondary)
                                             .padding(EdgeInsets(top: 10, leading: 3, bottom: 10, trailing: 15))
                                     }
-                                    .frame(width: fixed ? (geoWidth / CGFloat(tabs.count)) : .none, height: 52)
+                                    .frame(width: geoWidth / CGFloat(tabs.count))
                                     // Bar Indicator
                                     Rectangle().fill(selectedTab == row ? Color.cyan : Color.gray)
                                         .frame(height: 3)
                                 }
                                 .fixedSize()
-                            })
-//                                .accentColor(Color.white)
-                                .buttonStyle(PlainButtonStyle())
+                            }).buttonStyle(PlainButtonStyle())
                         }
                     }
                     .onChange(of: selectedTab) { target in
@@ -56,20 +52,13 @@ struct Tabs: View {
                 }
             }
         }
-        // TODO: check this
         .frame(height: 55)
-        .onAppear(perform: {
-            UIScrollView.appearance().bounces = fixed ? false : true
-            })
-        .onDisappear(perform: {
-            UIScrollView.appearance().bounces = true
-        })
     }
 }
 
 struct Tabs_Previews: PreviewProvider {
     static var previews: some View {
-        Tabs(fixed: true,
+        Tabs(
              tabs: [.init(title: "Tab 1"),
                     .init(title: "Tab 2")],
              geoWidth: 375,
