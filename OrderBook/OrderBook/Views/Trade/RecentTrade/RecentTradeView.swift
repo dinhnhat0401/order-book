@@ -18,18 +18,15 @@ import ViewModels
 public struct RecentTradeView<ViewModel>: View where ViewModel: RecentTradeViewModel {
     @StateObject var viewModel: ViewModel
 
-//    public init() {
-//    }
-
     public var body: some View {
         VStack {
             VStack {
                 HStack {
-                    Text("Qty").foregroundColor(.secondary)
-                    Spacer()
                     Text("Price(USD)").foregroundColor(.secondary)
                     Spacer()
                     Text("Qty").foregroundColor(.secondary)
+                    Spacer()
+                    Text("Time").foregroundColor(.secondary)
                 }
                 .padding(.horizontal, 20)
 //                    .frame(width: geoWidth, height: 50, alignment: .center)

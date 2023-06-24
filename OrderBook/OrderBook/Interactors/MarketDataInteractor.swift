@@ -16,7 +16,6 @@ public protocol MarketDataInteractorProtocol {
     func disconnect()
     func subscribe(topics: [String])
     func unsubscribe(topics: [Topic])
-    func streamData()
 //    func streamOrderBook() -> AsyncThrowingStream<[OrderBookItem], Error>
 //    func streamRecentTrade() -> AsyncThrowingStream<[TradeItem], Error>
     var orderBookValueSubject: CurrentValueSubject<[OrderBookItem], Never> { get }
@@ -34,7 +33,7 @@ public final class MarketDataInteractor: MarketDataInteractorProtocol {
 	public init() {
         orderBookData[.sell] = [:]
         orderBookData[.buy] = [:]
-//        streamData()
+        streamData()
 	}
 
 	public func connect() {
@@ -46,7 +45,7 @@ public final class MarketDataInteractor: MarketDataInteractorProtocol {
 	}
 
     // TODO: clean up
-    public func streamData() {
+    func streamData() {
         Task {
             for try await data in self.repository.stream() {
                 guard let orderBookL2 = data as? OrderBookL2 else {

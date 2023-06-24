@@ -28,7 +28,6 @@ public final class OrderBookViewModel: OrderBookViewModelProtocol {
         ]
         marketDataInteractor.connect()
         marketDataInteractor.subscribe(topics: [topic])
-        marketDataInteractor.streamData()
         observeOrderBook()
 
 //        defer {

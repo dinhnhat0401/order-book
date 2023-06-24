@@ -49,10 +49,18 @@ public final class RecentTradeViewModel: RecentTradeViewModelProtocol {
                     sideColor: tradeItem.side.color,
                     price: "\(tradeItem.price)",
                     size: "\(tradeItem.size)",
-                    timestamp: tradeItem.timestamp)
+                    timestamp: tradeItem.timestamp,
+                    fillBackground: true)
             }
             Task { @MainActor in
                 self.recentTradeViewModels = recentTradeViewModels
+//                // Do this after 0.2s
+//                try! await Task.sleep(nanoseconds: 2_000_000_000)
+//                self.recentTradeViewModels = self.recentTradeViewModels.map { vm in
+//					let noFillVM = vm
+//                    noFillVM.fillBackground = false
+//					return noFillVM
+//                }
             }
         }.store(in: &cancellable)
     }
