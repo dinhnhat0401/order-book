@@ -16,8 +16,6 @@ public protocol MarketDataInteractorProtocol {
     func disconnect()
     func subscribe(topics: [String]) throws
     func unsubscribe(topics: [Topic]) throws
-//    func streamOrderBook() -> AsyncThrowingStream<[OrderBookItem], Error>
-//    func streamRecentTrade() -> AsyncThrowingStream<[TradeItem], Error>
     var orderBookValueSubject: CurrentValueSubject<[OrderBookItem], Never> { get }
     var tradeValueSubject: CurrentValueSubject<[TradeItem], Never> { get }
 }
@@ -91,12 +89,12 @@ public final class MarketDataInteractor: MarketDataInteractorProtocol {
                         // Find order with price index with side
                         let priceIndex = calculatePriceIndex(price: order.price)
                         let side = order.side
-                        // TODO: check force cast
+                        // orderBookData[side] is initalized in init.
                         guard var existOrder = findOrder(orderId: order.id, in: orderBookData[side]![priceIndex, default: []])  else {
                             orderBookData[side]![priceIndex, default: []].append(order)
                             continue
                         }
-                        existOrder.updateData(size: order.size ?? .zero, price: order.price, timestamp: order.timestamp) // TODO: handle cannot find
+                        existOrder.updateData(size: order.size ?? .zero, price: order.price, timestamp: order.timestamp)
                     }
                 case .insert:
                     // Insert new records

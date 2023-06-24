@@ -45,36 +45,36 @@ public final class MarketDataRepository: MarketDataRepositoryProtocol {
 		return AsyncThrowingStream { continuation in
             Task {
                 for try await message in self.service.stream() {
-                    if message.contains("delete") {
-                        print(message)
-                    }
                     // Convert message string to Data
                     guard let data = message.data(using: .utf8) else {
                         continuation.finish(throwing: MarketDataRepository.MarketDataRepositoryError.unknown)
                         return
                     }
-                    let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
-                    let table = (json?["table"] as? String) ?? ""
-                    guard table == "orderBookL2" else {
-                        // Decode message to Trade
-                        guard let decodedTrade = try? JSONDecoder().decode(Trade.self, from: data) else {
-                            // TODO: check this
-                            continue
-                        }
-                        // and yield it
-                        continuation.yield(decodedTrade as MarketDataResponseProtocol)
+                    guard let decodedData = decodeMarketData(data: data) else {
                         continue
                     }
-                    // Decode message to OrderBookL2
-                    guard let decodedOrderBookL2 = try? JSONDecoder().decode(OrderBookL2.self, from: data) else {
-                        continue
-                    }
-                    // and yield it
-                    continuation.yield(decodedOrderBookL2 as MarketDataResponseProtocol)
+                    continuation.yield(decodedData)
                 }
             }
 		}
 	}
+
+    func decodeMarketData(data: Data) -> MarketDataResponseProtocol? {
+        let json = try? JSONSerialization.jsonObject(with: data) as? [String: Any]
+        let table = (json?["table"] as? String) ?? ""
+        guard table == "orderBookL2" else {
+            // Decode message to Trade
+            guard let decodedTrade = try? JSONDecoder().decode(Trade.self, from: data) else {
+                return nil
+            }
+            return decodedTrade
+        }
+        // Decode message to OrderBookL2
+        guard let decodedOrderBookL2 = try? JSONDecoder().decode(OrderBookL2.self, from: data) else {
+            return nil
+        }
+        return decodedOrderBookL2
+    }
 }
 
 extension MarketDataRepository {

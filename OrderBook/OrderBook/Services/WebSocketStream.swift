@@ -15,10 +15,8 @@ public protocol WebSocketStreamProtocol: AsyncSequence {
 }
 
 public class WebSocketStream: WebSocketStreamProtocol {
-
     public typealias Element = URLSessionWebSocketTask.Message
     public typealias AsyncIterator = AsyncThrowingStream<URLSessionWebSocketTask.Message, Error>.Iterator
-
     private var stream: AsyncThrowingStream<Element, Error>?
     private var continuation: AsyncThrowingStream<Element, Error>.Continuation?
     private let socket: URLSessionWebSocketTask
