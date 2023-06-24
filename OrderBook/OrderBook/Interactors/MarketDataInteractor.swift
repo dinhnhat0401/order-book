@@ -79,18 +79,22 @@ public final class MarketDataInteractor: MarketDataInteractorProtocol {
 					// Get 20 buy orders and 20 sell orders
                     let buyOrders = self.orderBookData[.buy]!.sorted { $0.key > $1.key }.prefix(20)
                     let sellOrders = self.orderBookData[.sell]!.sorted { $0.key < $1.key }.prefix(20)
+                    let totalBuyVolume = buyOrders.reduce(0) { $0 + $1.value.reduce(0) { $0 + Decimal($1.size) } }
+					let totalSellVolume = sellOrders.reduce(0) { $0 + $1.value.reduce(0) { $0 + Decimal($1.size) } }
+					var accumulatedBuyVolume = Decimal.zero
+					var accumulatedSellVolume = Decimal.zero
 					for i in 0..<20 {
                         let buyOrder = buyOrders[safe: i]
                         let sellOrder = sellOrders[safe: i]
-//                        let buyOrderSizePercentage = buyOrder.value.reduce(into: 0) { $0 + $1.sizePercentage }
-//                        let sellOrderSizePercentage = sellOrder.value.reduce(into: 0) { $0 + $1.sizePercentage }
+						accumulatedBuyVolume += buyOrder?.value.reduce(0) { $0 + Decimal($1.size) } ?? 0
+						accumulatedSellVolume += sellOrder?.value.reduce(0) { $0 + Decimal($1.size) } ?? 0
                         let orderBookItem = OrderBookItem(
                             buyPrice: getPrice(priceIndex: buyOrder?.key ?? .zero),
                             buySize: buyOrder?.value.reduce(0) { $0 + Decimal($1.size) } ?? .zero,
-                            buySizePercentage: 0.3,
+                            buySizePercentage: calculateSize(totalBuyVolume: totalBuyVolume, totalSellVolume: totalSellVolume, accumulatedVolume: accumulatedBuyVolume),
                             sellPrice: getPrice(priceIndex: sellOrder?.key ?? .zero),
                             sellSize: sellOrder?.value.reduce(0) { $0 + Decimal($1.size) } ?? .zero,
-                            sellSizePercentage: 0.45)
+                            sellSizePercentage: calculateSize(totalBuyVolume: totalBuyVolume, totalSellVolume: totalSellVolume, accumulatedVolume: accumulatedSellVolume))
 						orderBookItems.append(orderBookItem)
 					}
 					continuation.yield(orderBookItems)
@@ -118,6 +122,17 @@ public final class MarketDataInteractor: MarketDataInteractorProtocol {
 	private func findOrder(orderId: UInt64, in orders: [OrderBookL2Data]) -> OrderBookL2Data? {
 		return orders.first { $0.id == orderId }
 	}
+
+    private func calculateSize
+    (
+        totalBuyVolume: Decimal,
+        totalSellVolume: Decimal,
+        accumulatedVolume: Decimal
+    ) -> CGFloat {
+        let totalVolume = max(totalBuyVolume, totalSellVolume)
+        let size = accumulatedVolume / totalVolume
+        return CGFloat(truncating: size as NSNumber)
+    }
 }
 
 extension Collection {
