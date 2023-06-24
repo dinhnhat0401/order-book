@@ -14,8 +14,8 @@ import Factory
 public protocol MarketDataInteractorProtocol {
     func connect()
     func disconnect()
-    func subscribe(topics: [String])
-    func unsubscribe(topics: [Topic])
+    func subscribe(topics: [String]) throws
+    func unsubscribe(topics: [Topic]) throws
 //    func streamOrderBook() -> AsyncThrowingStream<[OrderBookItem], Error>
 //    func streamRecentTrade() -> AsyncThrowingStream<[TradeItem], Error>
     var orderBookValueSubject: CurrentValueSubject<[OrderBookItem], Never> { get }
@@ -145,12 +145,12 @@ public final class MarketDataInteractor: MarketDataInteractorProtocol {
         }
 	}
 
-	public func subscribe(topics: [String]) {
-        repository.subscribe(topics: topics.compactMap({ Topic(rawValue: $0) }))
+	public func subscribe(topics: [String]) throws {
+        try repository.subscribe(topics: topics.compactMap({ Topic(rawValue: $0) }))
 	}
 
-    public func unsubscribe(topics: [Topic]) {
-		repository.unsubscribe(topics: topics)
+    public func unsubscribe(topics: [Topic]) throws {
+		try repository.unsubscribe(topics: topics)
 	}
 
 	private func calculatePriceIndex(price: Decimal) -> Decimal {

@@ -13,7 +13,7 @@ public protocol MarketDataServiceProtocol {
     func connect()
     func disconnect()
     func subscribe(topicArgs: [String]) throws
-    func unsubscribe(topicArgs: String)
+    func unsubscribe(topicArgs: String) throws
     func stream() -> AsyncThrowingStream<String, Error>
 }
 
@@ -35,23 +35,22 @@ public final class MarketDataService: MarketDataServiceProtocol {
 		isConnected = false
 	}
 
-//    func subscribe(topicArgs: [String]) throws -> AsyncThrowingStream<URLSessionWebSocketTask.Message, Error>.Iterator {
     public func subscribe(topicArgs: [String]) throws {
-//		guard isConnected else {
-//            throw MarketDataServiceError.notConnected
-//		}
-		// Create json object
+		guard isConnected else {
+           throw MarketDataServiceError.notConnected
+		}
         let jsonObject = ["op": "subscribe", "args": topicArgs] as [String : Any]
 		// Convert json object to string subscribe to the server
 		let jsonData = try JSONSerialization.data(withJSONObject: jsonObject, options: [])
-		let jsonString = String(data: jsonData, encoding: .utf8)! // TODO: not force
+		guard let jsonString = String(data: jsonData, encoding: .utf8) else {
+			throw MarketDataServiceError.cannotEncodeString
+		}
 		socket.send(jsonString)
-//        return socket.makeAsyncIterator()
 	}
 
-    public func unsubscribe(topicArgs: String) {
+    public func unsubscribe(topicArgs: String) throws {
 		guard isConnected else {
-			return
+			throw MarketDataServiceError.notConnected
 		}
 		socket.send("{\"op\": \"unsubscribe\", \"args\": \(topicArgs)}")
 	}
@@ -73,8 +72,29 @@ public final class MarketDataService: MarketDataServiceProtocol {
             }
 		}
 	}
+}
 
-	enum MarketDataServiceError: Error {
+extension MarketDataService {
+	public enum MarketDataServiceError: LocalizedError {
 		case notConnected
+		case cannotEncodeString
+
+		public var errorDescription: String? {
+			switch self {
+			case .notConnected:
+				return "Not connected"
+			case .cannotEncodeString:
+				return "Cannot encode string"
+			}
+		}
+
+		public var failureReason: String? {
+			switch self {
+			case .notConnected:
+				return "Not connected"
+			case .cannotEncodeString:
+				return "Cannot encode string"
+			}
+		}
 	}
 }

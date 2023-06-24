@@ -30,7 +30,11 @@ public final class RecentTradeViewModel: RecentTradeViewModelProtocol {
     }
 
     public func subscribeTrade() {
-        marketDataInteractor.subscribe(topics: ["trade:XBTUSD"])
+		do {
+        	try marketDataInteractor.subscribe(topics: ["trade:XBTUSD"])
+		} catch {
+			// Show error alert
+		}
     }
 
     func observeRecentTrade() {

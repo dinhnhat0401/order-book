@@ -13,43 +13,32 @@ import Factory
 public protocol MarketDataRepositoryProtocol {
     func connect()
     func disconnect()
-    func subscribe(topics: [Topic])
-    func unsubscribe(topics: [Topic])
+    func subscribe(topics: [Topic]) throws
+    func unsubscribe(topics: [Topic]) throws
     func stream() -> AsyncThrowingStream<MarketDataResponseProtocol, Error>
 }
 
 public final class MarketDataRepository: MarketDataRepositoryProtocol {
     @Injected(\.marketDataService) private var service: MarketDataServiceProtocol
-	private var isConnected = false
 
     public init() {}
 
     public func connect() {
 		service.connect()
-		isConnected = true
 	}
 
     public func disconnect() {
 		service.disconnect()
-		isConnected = false
 	}
 
-    public func subscribe(topics: [Topic]) {
-		guard isConnected else {
-            // TODO: throw error here
-			fatalError("Not connected")
-		}
+    public func subscribe(topics: [Topic]) throws {
         let topicArgs = topics.map { $0.rawValue }
-        // TODO: no force
-        try! self.service.subscribe(topicArgs: topicArgs)
+        try self.service.subscribe(topicArgs: topicArgs)
 	}
 
-    public func unsubscribe(topics: [Topic]) {
-		guard isConnected else {
-			return
-		}
+    public func unsubscribe(topics: [Topic]) throws {
         let topicArgs = topics.map { "\"\($0.rawValue)\"" }.joined(separator: ",")
-		service.unsubscribe(topicArgs: topicArgs)
+		try service.unsubscribe(topicArgs: topicArgs)
 	}
 
     public func stream() -> AsyncThrowingStream<MarketDataResponseProtocol, Error> {
@@ -70,7 +59,6 @@ public final class MarketDataRepository: MarketDataRepositoryProtocol {
                         // Decode message to Trade
                         guard let decodedTrade = try? JSONDecoder().decode(Trade.self, from: data) else {
                             // TODO: check this
-//                            continuation.finish(throwing: MarketDataRepository.MarketDataRepositoryError.unknown)
                             continue
                         }
                         // and yield it
@@ -79,7 +67,6 @@ public final class MarketDataRepository: MarketDataRepositoryProtocol {
                     }
                     // Decode message to OrderBookL2
                     guard let decodedOrderBookL2 = try? JSONDecoder().decode(OrderBookL2.self, from: data) else {
-//                        continuation.finish(throwing: MarketDataRepository.MarketDataRepositoryError.unknown)
                         continue
                     }
                     // and yield it

@@ -27,7 +27,11 @@ public final class OrderBookViewModel: OrderBookViewModelProtocol {
     }
 
     public func subscribeOrderBook() {
-        marketDataInteractor.subscribe(topics: ["orderBookL2:XBTUSD"])
+        do {
+            try marketDataInteractor.subscribe(topics: ["orderBookL2:XBTUSD"])
+        } catch {
+            // Show error alert
+        }
     }
 
     func observeOrderBook() {
