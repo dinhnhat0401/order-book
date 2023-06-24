@@ -11,21 +11,7 @@ import XCTest
 @testable import Services
 
 final class InteractorsTests: XCTestCase {
-    func testCanGetDataViaRepository() { // TODO: check this test
-//        let repository = MarketDataRepositoryMock()
-//        let interactor = MarketDataInteractor(repository: repository)
-//        let stream = interactor.stream()
-//        let expectation = XCTestExpectation(description: "Stream data")
-//        Task {
-//            do {
-//                for try await data in stream {
-//                    XCTAssertEqual(data, MarketDataResponseMock())
-//                    expectation.fulfill()
-//                }
-//            } catch {
-//                XCTFail("Should not throw error")
-//            }
-//        }
-//        wait(for: [expectation], timeout: 1)
+    func testCanGetDataViaRepository() {
+        // TODO: test this
     }
 }

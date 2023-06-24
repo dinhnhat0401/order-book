@@ -49,6 +49,10 @@ public final class RecentTradeViewModel: RecentTradeViewModelProtocol {
             }
             self?.lastTimestamp = recentTrade.first?.timestamp ?? ""
             Task { @MainActor [weak self] in
+                guard !recentTradeViewModels.isEmpty else {
+                    return
+                }
+                self?.loading = false
                 self?.recentTradeViewModels = recentTradeViewModels
             }
         }.store(in: &cancellable)

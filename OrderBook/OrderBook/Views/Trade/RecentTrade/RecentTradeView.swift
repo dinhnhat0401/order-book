@@ -29,7 +29,6 @@ public struct RecentTradeView<ViewModel>: View where ViewModel: RecentTradeViewM
                     Text("Time").foregroundColor(.secondary)
                 }
                 .padding(.horizontal, 20)
-//                    .frame(width: geoWidth, height: 50, alignment: .center)
             }
 
             // Scrollable view

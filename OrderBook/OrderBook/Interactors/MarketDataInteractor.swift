@@ -33,7 +33,6 @@ public final class MarketDataInteractor: MarketDataInteractorProtocol {
 	public init() {
         orderBookData[.sell] = [:]
         orderBookData[.buy] = [:]
-        streamData()
 
 		// clean data on memory warning
 		NotificationCenter.default.publisher(for: UIApplication.didReceiveMemoryWarningNotification)
@@ -45,6 +44,7 @@ public final class MarketDataInteractor: MarketDataInteractorProtocol {
 
 	public func connect() {
 		repository.connect()
+        streamData()
 	}
 
     public func disconnect() {
