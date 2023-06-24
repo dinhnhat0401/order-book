@@ -46,7 +46,7 @@ struct OrderBookView<ViewModel>: View where ViewModel: OrderBookViewModelProtoco
             // Scrollable view
             ScrollView(.vertical, showsIndicators: false) {
                 LazyVStack(spacing: 0) {
-					ForEach(viewModel.orderBookItems) { item in
+                    ForEach(viewModel.orderBookItemViewModels) { item in
 						OrderBookItemView(viewModel: item, viewWidth: geoWidth)
 					}
                 }

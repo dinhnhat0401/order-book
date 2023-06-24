@@ -20,12 +20,16 @@ public struct OrderBookItemView<ViewModel>: View where ViewModel: OrderBookItemV
                     HStack {
                         Text(viewModel.buySize).minimumScaleFactor(0.2)
                         Spacer(minLength: 0)
-                        Text(viewModel.buyPrice).minimumScaleFactor(0.2)
+                        Text(viewModel.buyPrice)
+                            .foregroundColor(viewModel.buyPriceColor)
+                            .minimumScaleFactor(0.2)
                             .padding(.trailing, 5.0)
                     }
                     .frame(width: viewWidth / 2.0)
                     HStack {
-                        Text(viewModel.sellPrice).minimumScaleFactor(0.2)
+                        Text(viewModel.sellPrice)
+                            .foregroundColor(viewModel.sellPriceColor)
+                            .minimumScaleFactor(0.2)
                             .padding(.leading, 5.0)
                         Spacer(minLength: 0)
                         Text(viewModel.sellSize).minimumScaleFactor(0.2)
@@ -63,6 +67,6 @@ public struct OrderBookItemView<ViewModel>: View where ViewModel: OrderBookItemV
 
 struct OrderBookItemView_Previews: PreviewProvider {
     static var previews: some View {
-        OrderBookItemView(viewModel: OrderBookItemViewModel(orderBookItem: OrderBookItem(buyPrice: "30600", buySize: "0.04", buySizePercentage: 0.13, sellPrice: "31200", sellSize: "0.1", sellSizePercentage: 0.4)), viewWidth: 375.0)
+        OrderBookItemView(viewModel: OrderBookItemViewModel(buyPrice: "30600", buySize: "0.04", buySizePercentage: 0.13, sellPrice: "31200", sellSize: "0.1", sellSizePercentage: 0.4), viewWidth: 375)
     }
 }

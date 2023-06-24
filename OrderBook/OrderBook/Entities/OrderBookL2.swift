@@ -20,12 +20,19 @@ public struct OrderBookL2: MarketDataResponseProtocol, Decodable {
 }
 
 public struct OrderBookL2Data: Decodable {
-    let symbol: String
-    let id: UInt64
-    let side: Side
-    let size: UInt64
-    let price: Decimal
-    let timestamp: String
+    public let symbol: String
+    public let id: UInt64
+    public let side: Side
+    public var size: UInt64
+    public var price: Decimal
+    public var timestamp: String
+
+    // Update data
+    public mutating func updateData(size: UInt64, price: Decimal, timestamp: String) {
+        self.size = size
+        self.price = price
+        self.timestamp = timestamp
+    }
 
     enum CodingKeys: String, CodingKey {
         case symbol = "symbol"

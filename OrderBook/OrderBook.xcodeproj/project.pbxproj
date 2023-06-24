@@ -28,6 +28,7 @@
 		842383692A45CD15001E0BD0 /* Injection+Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842383672A45CC9E001E0BD0 /* Injection+Interactor.swift */; };
 		8423836B2A45CD37001E0BD0 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 8423836A2A45CD37001E0BD0 /* Factory */; };
 		8423836D2A466EBD001E0BD0 /* TradeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423836C2A466EBD001E0BD0 /* TradeScreenViewModel.swift */; };
+		842383722A4675A3001E0BD0 /* OrderBookItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423836E2A467445001E0BD0 /* OrderBookItem.swift */; };
 		844830572A407C4100367567 /* OrderBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844830562A407C4100367567 /* OrderBookApp.swift */; };
 		844830592A407C4100367567 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844830582A407C4100367567 /* ContentView.swift */; };
 		8448305B2A407C4700367567 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8448305A2A407C4700367567 /* Assets.xcassets */; };
@@ -287,6 +288,7 @@
 		842383622A45CBA4001E0BD0 /* Injection+Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Injection+Service.swift"; sourceTree = "<group>"; };
 		842383672A45CC9E001E0BD0 /* Injection+Interactor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Injection+Interactor.swift"; sourceTree = "<group>"; };
 		8423836C2A466EBD001E0BD0 /* TradeScreenViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TradeScreenViewModel.swift; sourceTree = "<group>"; };
+		8423836E2A467445001E0BD0 /* OrderBookItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookItem.swift; sourceTree = "<group>"; };
 		844830532A407C4100367567 /* OrderBook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OrderBook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		844830562A407C4100367567 /* OrderBookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBookApp.swift; sourceTree = "<group>"; };
 		844830582A407C4100367567 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -651,6 +653,7 @@
 		848CB48B2A4096960097B017 /* Interactors */ = {
 			isa = PBXGroup;
 			children = (
+				8423836E2A467445001E0BD0 /* OrderBookItem.swift */,
 				848CB48C2A4096960097B017 /* Interactors.h */,
 				848CB48D2A4096960097B017 /* Interactors.docc */,
 				848CB4CF2A40986D0097B017 /* MarketDataInteractor.swift */,
@@ -1364,6 +1367,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				842383722A4675A3001E0BD0 /* OrderBookItem.swift in Sources */,
 				842383612A45CB6A001E0BD0 /* Injection+Repo.swift in Sources */,
 				8423835B2A45C786001E0BD0 /* MarketDataInteractor.swift in Sources */,
 				848CB48E2A4096960097B017 /* Interactors.docc in Sources */,
