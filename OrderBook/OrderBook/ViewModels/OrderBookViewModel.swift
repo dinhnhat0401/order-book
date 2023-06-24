@@ -49,7 +49,10 @@ public final class OrderBookViewModel: OrderBookViewModelProtocol {
                         sellSize: "\(orderBookItem.sellSize)",
                         sellSizePercentage: orderBookItem.sellSizePercentage)
                 }
-                self.orderBookItemViewModels = orderBookItemViewModels
+
+                Task { @MainActor in
+                    self.orderBookItemViewModels = orderBookItemViewModels
+                }
             }
         }
     }
