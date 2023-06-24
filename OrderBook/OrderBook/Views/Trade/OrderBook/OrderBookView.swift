@@ -17,18 +17,10 @@ import ViewModels
 // Draw relative volume of accumulated size s in the background of each rows.
 
 struct OrderBookView<ViewModel>: View where ViewModel: OrderBookViewModelProtocol {
-	@StateObject var viewModel: ViewModel
+    @StateObject var viewModel: ViewModel
     var geoWidth: CGFloat
 
-	// init(viewModel: ViewModel, geoWidth: CGFloat) {
-		
-	// }
-
 	var body: some View {
-        // Header view with Qty, Price(USD), Qty labels
-        // Scrollable view with 20 buy items and 20 sell items
-
-        // Header view
         VStack {
             VStack {
                 HStack {
@@ -50,6 +42,13 @@ struct OrderBookView<ViewModel>: View where ViewModel: OrderBookViewModelProtoco
 					}
                 }
             }
+        }
+        .if(viewModel.loading) { view in
+            view.overlay(
+                VStack {
+                    ProgressView()
+                }
+            )
         }
     }
 }

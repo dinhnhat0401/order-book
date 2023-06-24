@@ -11,53 +11,27 @@ import Foundation
 import Interactors
 
 public protocol OrderBookViewModelProtocol: ObservableObject {
+    var loading: Bool { get }
     var orderBookItemViewModels: [OrderBookItemViewModel] { get }
+    func subscribeOrderBook()
 }
 
 public final class OrderBookViewModel: OrderBookViewModelProtocol {
     @Published public var orderBookItemViewModels: [OrderBookItemViewModel] = []
+    @Published public var loading: Bool = true
     @Injected(\.marketDataInteractor) private var marketDataInteractor: MarketDataInteractorProtocol
     private var cancellable = Set<AnyCancellable>()
 
-    public init(topic: String = "orderBookL2:XBTUSD") {
-        self.orderBookItemViewModels = [
-            OrderBookItemViewModel(buyPrice: "30600", buySize: "0.04", buySizePercentage: 0.13, sellPrice: "31200", sellSize: "0.1", sellSizePercentage: 0.4),
-            OrderBookItemViewModel(buyPrice: "30600", buySize: "0.04", buySizePercentage: 0.13, sellPrice: "31200", sellSize: "0.1", sellSizePercentage: 0.4),
-            OrderBookItemViewModel(buyPrice: "30600", buySize: "0.04", buySizePercentage: 0.13, sellPrice: "31200", sellSize: "0.1", sellSizePercentage: 0.4),
-            OrderBookItemViewModel(buyPrice: "30600", buySize: "0.04", buySizePercentage: 0.13, sellPrice: "31200", sellSize: "0.1", sellSizePercentage: 0.4),
-        ]
-        marketDataInteractor.connect()
-        marketDataInteractor.subscribe(topics: [topic])
+    public init() {
+        // TODO: skeleton or loading
         observeOrderBook()
-
-//        defer {
-//            marketDataInteractor.disconnect()
-//        }
     }
 
-//    deinit {
-//        marketDataInteractor.disconnect()
-//    }
+    public func subscribeOrderBook() {
+        marketDataInteractor.subscribe(topics: ["orderBookL2:XBTUSD"])
+    }
 
     func observeOrderBook() {
-//        Task { // TODO: weak self
-//            for try await orderBooks in self.marketDataInteractor.streamOrderBook() {
-//                let orderBookItemViewModels = orderBooks.map { orderBookItem in
-//                    return OrderBookItemViewModel(
-//                        buyPrice: "\(orderBookItem.buyPrice)",
-//                        buySize: "\(orderBookItem.buySize)",
-//                        buySizePercentage: orderBookItem.buySizePercentage,
-//                        sellPrice: "\(orderBookItem.sellPrice)",
-//                        sellSize: "\(orderBookItem.sellSize)",
-//                        sellSizePercentage: orderBookItem.sellSizePercentage)
-//                }
-//
-//                Task { @MainActor in
-//                    self.orderBookItemViewModels = orderBookItemViewModels
-//                }
-//            }
-//        }
-
         marketDataInteractor.orderBookValueSubject.sink { orderBooks in
             let orderBookItemViewModels = orderBooks.map { orderBookItem in
                 return OrderBookItemViewModel(
@@ -68,9 +42,12 @@ public final class OrderBookViewModel: OrderBookViewModelProtocol {
                     sellSize: "\(orderBookItem.sellSize)",
                     sellSizePercentage: orderBookItem.sellSizePercentage)
             }
-
-            Task { @MainActor in
-                self.orderBookItemViewModels = orderBookItemViewModels
+            Task { @MainActor [weak self] in
+                guard !orderBookItemViewModels.isEmpty else {
+                    return
+                }
+                self?.loading = false
+                self?.orderBookItemViewModels = orderBookItemViewModels
             }
         }.store(in: &cancellable)
     }

@@ -40,6 +40,12 @@ public struct RecentTradeView<ViewModel>: View where ViewModel: RecentTradeViewM
                     }
                 }
             }
+        }.if(viewModel.loading) { view in
+            view.overlay(
+                VStack {
+                    ProgressView()
+                }
+            )
         }
     }
 }

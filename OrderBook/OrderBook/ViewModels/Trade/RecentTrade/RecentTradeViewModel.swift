@@ -13,19 +13,24 @@ import Entities
 import SwiftUI
 
 public protocol RecentTradeViewModelProtocol: ObservableObject {
+    var loading: Bool { get }
     var recentTradeViewModels: [TradeItemViewModel] { get } // TODO: shoudl use protocol?
+	func subscribeTrade()
 }
 
 public final class RecentTradeViewModel: RecentTradeViewModelProtocol {
+    @Published public var loading: Bool = true
     @Published public var recentTradeViewModels: [TradeItemViewModel] = []
     @Injected(\.marketDataInteractor) private var marketDataInteractor: MarketDataInteractorProtocol
     private var lastTimestamp = ""
     private var cancellable = Set<AnyCancellable>()
 
-    public init(topic: String = "trade:XBTUSD") {
-        marketDataInteractor.connect()
-        marketDataInteractor.subscribe(topics: [topic])
+    public init() {
         observeRecentTrade()
+    }
+
+    public func subscribeTrade() {
+        marketDataInteractor.subscribe(topics: ["trade:XBTUSD"])
     }
 
     func observeRecentTrade() {
