@@ -45,11 +45,7 @@ public final class MarketDataService: MarketDataServiceProtocol {
            throw MarketDataServiceError.notConnected
 		}
         let jsonObject = ["op": "subscribe", "args": topicArgs] as [String : Any]
-		// Convert json object to string subscribe to the server
-		let jsonData = try JSONSerialization.data(withJSONObject: jsonObject, options: [])
-		guard let jsonString = String(data: jsonData, encoding: .utf8) else {
-			throw MarketDataServiceError.cannotEncodeString
-		}
+		let jsonString = try convertToJsonString(jsonObject: jsonObject)
 		socket.send(jsonString)
 	}
 
@@ -57,7 +53,9 @@ public final class MarketDataService: MarketDataServiceProtocol {
 		guard isConnected else {
 			throw MarketDataServiceError.notConnected
 		}
-		socket.send("{\"op\": \"unsubscribe\", \"args\": \(topicArgs)}")
+		let jsonObject = ["op": "unsubscribe", "args": topicArgs] as [String : Any]
+		let jsonString = try convertToJsonString(jsonObject: jsonObject)
+		socket.send(jsonString)
 	}
 
     public func stream() {
@@ -73,6 +71,14 @@ public final class MarketDataService: MarketDataServiceProtocol {
                 messageStream.send(text)
             }
         }
+	}
+
+	func convertToJsonString(jsonObject: [String : Any]) throws -> String {
+		let jsonData = try JSONSerialization.data(withJSONObject: jsonObject, options: [])
+		guard let jsonString = String(data: jsonData, encoding: .utf8) else {
+			throw MarketDataServiceError.cannotEncodeString
+		}
+		return jsonString
 	}
 }
 
