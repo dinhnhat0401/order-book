@@ -50,6 +50,7 @@
 		8489BC6C2A46E3E00010808E /* ViewHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489BC6A2A46E3500010808E /* ViewHelper.swift */; };
 		8489BC7B2A47241A0010808E /* WebSocketStream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489BC792A47240C0010808E /* WebSocketStream.swift */; };
 		8489BC7E2A47E5150010808E /* ViewModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489BC7C2A47E50E0010808E /* ViewModelHelper.swift */; };
+		8489BC802A47E8080010808E /* ViewModelHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489BC7F2A47E8080010808E /* ViewModelHelperTests.swift */; };
 		848CB4462A4096440097B017 /* Entities.docc in Sources */ = {isa = PBXBuildFile; fileRef = 848CB4452A4096440097B017 /* Entities.docc */; };
 		848CB44C2A4096440097B017 /* Entities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848CB4422A4096440097B017 /* Entities.framework */; };
 		848CB4532A4096440097B017 /* EntitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CB4522A4096440097B017 /* EntitiesTests.swift */; };
@@ -318,6 +319,7 @@
 		8489BC6A2A46E3500010808E /* ViewHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewHelper.swift; sourceTree = "<group>"; };
 		8489BC792A47240C0010808E /* WebSocketStream.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketStream.swift; sourceTree = "<group>"; };
 		8489BC7C2A47E50E0010808E /* ViewModelHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelHelper.swift; sourceTree = "<group>"; };
+		8489BC7F2A47E8080010808E /* ViewModelHelperTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelHelperTests.swift; sourceTree = "<group>"; };
 		848CB4422A4096440097B017 /* Entities.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Entities.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		848CB4442A4096440097B017 /* Entities.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Entities.h; sourceTree = "<group>"; };
 		848CB4452A4096440097B017 /* Entities.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Entities.docc; sourceTree = "<group>"; };
@@ -574,6 +576,7 @@
 			isa = PBXGroup;
 			children = (
 				844830B82A407F7600367567 /* ViewModelsTests.swift */,
+				8489BC7F2A47E8080010808E /* ViewModelHelperTests.swift */,
 			);
 			path = ViewModelsTests;
 			sourceTree = "<group>";
@@ -1312,6 +1315,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8489BC802A47E8080010808E /* ViewModelHelperTests.swift in Sources */,
 				844830682A407C4700367567 /* OrderBookTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
