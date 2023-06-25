@@ -7,7 +7,7 @@ MacOS 13.4.1 (22F82)
 
 ## Architecture & Technical stack
 
-- MVVM
+- MVVM, clean architecture like
 - Dependency injection
 - SwiftUI
 - Swift Concurrency & Combine
