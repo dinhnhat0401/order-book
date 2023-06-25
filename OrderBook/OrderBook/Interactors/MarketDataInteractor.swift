@@ -152,7 +152,7 @@ public final class MarketDataInteractor: MarketDataInteractorProtocol {
         let totalSellVolume = sellOrders.reduce(0) { $0 + $1.value.reduce(0) { $0 + Decimal($1.size ?? .zero) } }
         var accumulatedBuyVolume = Decimal.zero
         var accumulatedSellVolume = Decimal.zero
-        for i in 0..<20 {
+        for i in 0..<min(max(buyOrders.count, sellOrders.count), 20) {
             let buyOrder = buyOrders[safe: i]
             let sellOrder = sellOrders[safe: i]
             accumulatedBuyVolume += buyOrder?.value.reduce(0) { $0 + Decimal($1.size ?? .zero) } ?? 0
