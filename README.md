@@ -16,5 +16,6 @@ MacOS 13.4.1 (22F82)
 
 ## Demo
 
-![iPad](src="ipad.gif")
-![iPhone](src="iphone.gif")
+![iPad](./ipad.gif)
+
+![iPhone](./iphone.gif)
