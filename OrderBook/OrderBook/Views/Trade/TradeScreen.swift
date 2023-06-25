@@ -36,10 +36,10 @@ public struct TradeScreen<ViewModel>: View where ViewModel: TradeScreenViewModel
                     RecentTradeView(viewModel: viewModel.recentTradeViewModel as? RecentTradeViewModel ?? RecentTradeViewModel()).tag(1)
                		})
                .tabViewStyle(PageTabViewStyle(indexDisplayMode: .never))
-           }
-           .navigationBarTitleDisplayMode(.inline)
-       }
-   }
+            }
+            .navigationBarTitleDisplayMode(.inline)
+        }
+    }
 }
 
 struct TradeScreen_Previews: PreviewProvider {

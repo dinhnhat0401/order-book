@@ -12,7 +12,7 @@ import Services
 extension Container {
     // Repositories
     var marketDataService: Factory<MarketDataServiceProtocol> {
-        self { MarketDataService(socket: WebSocketStream(url: "wss://ws.bitmex.com/realtime")) }
+        Factory(self) { MarketDataService(socket: WebSocketStream(url: "wss://ws.bitmex.com/realtime")) }
             .scope(.shared)
     }
 }

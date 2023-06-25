@@ -10,9 +10,8 @@ import Foundation
 import Interactors
 
 extension Container {
-    static var mk = MarketDataInteractor()
     var marketDataInteractor: Factory<MarketDataInteractorProtocol> {
-//        Factory(self) { MarketDataInteractor() }
-        Factory(self) { Container.mk }
+        self { MarketDataInteractor() }
+            .scope(.shared)
     }
 }

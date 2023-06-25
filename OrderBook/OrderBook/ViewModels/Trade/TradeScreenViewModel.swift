@@ -23,6 +23,7 @@ public class TradeScreenViewModel: TradeScreenViewModelProtocol {
         self.orderBookViewModel = OrderBookViewModel()
         self.recentTradeViewModel = RecentTradeViewModel()
         marketDataInteractor.connect()
+        marketDataInteractor.streamData()
         self.orderBookViewModel.subscribeOrderBook()
         self.recentTradeViewModel.subscribeTrade()
     }

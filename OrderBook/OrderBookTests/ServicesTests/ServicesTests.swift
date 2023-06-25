@@ -22,10 +22,10 @@ final class ServicesTests: XCTestCase {
             // subscribe to asyncstream
 			// await for the first message
             try marketDataService.subscribe(topicArgs: topicArgs)
-            for try await message in marketDataService.stream() {
-                print(message)
-                expectation.fulfill()
-            }
+//            for try await message in marketDataService.stream() {
+//                print(message)
+//                expectation.fulfill()
+//            }
 
 		} catch {
 			print(error)

@@ -5,21 +5,26 @@
 //  Created by Đinh Văn Nhật on 2023/06/19.
 //
 
+import Combine
 import Foundation
 
 // Create MarketDataService to fetch data from the server via websocket using await/async and websocket
 
 public protocol MarketDataServiceProtocol {
+    var messageStream: CurrentValueSubject<String, Never> { get }
+
     func connect()
     func disconnect()
     func subscribe(topicArgs: [String]) throws
     func unsubscribe(topicArgs: String) throws
-    func stream() -> AsyncThrowingStream<String, Error>
+   	func stream()
 }
 
 public final class MarketDataService: MarketDataServiceProtocol {
+    public var messageStream = CurrentValueSubject<String, Never>("")
     private let socket: any WebSocketStreamProtocol
 	private var isConnected = false
+    private var streamingData = false
 
     public init(socket: any WebSocketStreamProtocol) {
 		self.socket = socket
@@ -55,17 +60,19 @@ public final class MarketDataService: MarketDataServiceProtocol {
 		socket.send("{\"op\": \"unsubscribe\", \"args\": \(topicArgs)}")
 	}
 
-    public func stream() -> AsyncThrowingStream<String, Error> {
-		return AsyncThrowingStream { continuation in
-            Task {
-                for try await message in socket {
-                    guard case .string(let text) = message else {
-                        continue
-                    }
-                    continuation.yield(text)
+    public func stream() {
+        guard !streamingData else {
+            return
+        }
+        streamingData = true
+        Task {
+            for try await message in socket {
+                guard case .string(let text) = message else {
+                    continue
                 }
+                messageStream.send(text)
             }
-		}
+        }
 	}
 }
 
