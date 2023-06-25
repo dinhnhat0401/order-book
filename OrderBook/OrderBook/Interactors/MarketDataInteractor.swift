@@ -93,8 +93,6 @@ public final class MarketDataInteractor: MarketDataInteractorProtocol {
         case .delete, .update:
             break
         }
-
-        // TODO: optimize this
         tradeValueSubject.send(self.tradeData)
     }
 

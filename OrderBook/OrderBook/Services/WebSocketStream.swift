@@ -43,7 +43,6 @@ public class WebSocketStream: WebSocketStreamProtocol {
         guard let stream = stream else {
             fatalError("stream was not initialized")
         }
-        // TODO: should it be here?
         listenForMessages()
         return stream.makeAsyncIterator()
     }
