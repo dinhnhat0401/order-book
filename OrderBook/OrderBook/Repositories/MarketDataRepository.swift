@@ -16,7 +16,6 @@ public protocol MarketDataRepositoryProtocol {
     func disconnect()
     func subscribe(topics: [Topic]) throws
     func unsubscribe(topics: [Topic]) throws
-//    var marketDataStream: CurrentValueSubject<MarketDataResponseProtocol?, MarketDataRepository.MarketDataRepositoryError> { get }
     func stream() -> AnyPublisher<MarketDataResponseProtocol, Never>
 }
 

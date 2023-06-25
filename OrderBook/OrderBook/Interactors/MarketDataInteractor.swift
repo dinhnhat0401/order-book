@@ -140,7 +140,11 @@ public final class MarketDataInteractor: MarketDataInteractorProtocol {
         }
 
         // Generate OrderBookItem from orderBookData
-        var orderBookItems: [OrderBookItem] = []
+        orderBookValueSubject.send(generateOrderBookItem())
+    }
+
+	func generateOrderBookItem() -> [OrderBookItem] {
+		var orderBookItems: [OrderBookItem] = []
         // Get 20 buy orders and 20 sell orders
         let buyOrders = self.orderBookData[.buy]!.sorted { $0.key > $1.key }.prefix(20)
         let sellOrders = self.orderBookData[.sell]!.sorted { $0.key < $1.key }.prefix(20)
@@ -162,8 +166,8 @@ public final class MarketDataInteractor: MarketDataInteractorProtocol {
                 sellSizePercentage: calculateSize(totalBuyVolume: totalBuyVolume, totalSellVolume: totalSellVolume, accumulatedVolume: accumulatedSellVolume))
             orderBookItems.append(orderBookItem)
         }
-        orderBookValueSubject.send(orderBookItems)
-    }
+		return orderBookItems
+	}
 
 	private func calculatePriceIndex(price: Decimal) -> Decimal {
 		return price / increment
