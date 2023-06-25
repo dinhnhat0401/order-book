@@ -42,8 +42,8 @@ public final class RecentTradeViewModel: RecentTradeViewModelProtocol {
             let recentTradeViewModels = recentTrade.map { tradeItem in
                 return TradeItemViewModel(
                     sideColor: tradeItem.side.color,
-                    price: "\(tradeItem.price)",
-                    size: "\(tradeItem.size)",
+                    price: "\(ViewModelHelper.format(tradeItem.price))",
+                    size: "\(ViewModelHelper.format(tradeItem.size))",
                     timestamp: tradeItem.timestamp,
                     fillBackground: tradeItem.timestamp > self?.lastTimestamp ?? "")
             }

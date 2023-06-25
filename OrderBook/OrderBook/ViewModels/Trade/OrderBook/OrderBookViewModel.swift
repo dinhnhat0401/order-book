@@ -38,11 +38,11 @@ public final class OrderBookViewModel: OrderBookViewModelProtocol {
         marketDataInteractor.orderBookValueSubject.sink { orderBooks in
             let orderBookItemViewModels = orderBooks.map { orderBookItem in
                 return OrderBookItemViewModel(
-                    buyPrice: "\(orderBookItem.buyPrice)",
-                    buySize: "\(orderBookItem.buySize)",
+                    buyPrice: "\(ViewModelHelper.format(orderBookItem.buyPrice))",
+                    buySize: "\(ViewModelHelper.format(orderBookItem.buySize))",
                     buySizePercentage: orderBookItem.buySizePercentage,
-                    sellPrice: "\(orderBookItem.sellPrice)",
-                    sellSize: "\(orderBookItem.sellSize)",
+                    sellPrice: "\(ViewModelHelper.format(orderBookItem.sellPrice))",
+                    sellSize: "\(ViewModelHelper.format(orderBookItem.sellSize))",
                     sellSizePercentage: orderBookItem.sellSizePercentage)
             }
             Task { @MainActor [weak self] in

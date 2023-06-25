@@ -27,6 +27,15 @@ public struct OrderBookL2Data: Decodable {
     public var price: Decimal
     public var timestamp: String
 
+    init(symbol: String, id: UInt64, side: Side, size: UInt64? = nil, price: Decimal, timestamp: String) {
+        self.symbol = symbol
+        self.id = id
+        self.side = side
+        self.size = size
+        self.price = price
+        self.timestamp = timestamp
+    }
+
     // Update data
     public mutating func updateData(size: UInt64, price: Decimal, timestamp: String) {
         self.size = size

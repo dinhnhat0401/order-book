@@ -27,11 +27,11 @@ struct TradeItemView<ViewModel>: View where ViewModel: TradeItemViewModelProtoco
                 Rectangle().fill(viewModel.sideColor.opacity(0.4))
             }
             HStack {
-                Text(viewModel.price).foregroundColor(viewModel.sideColor)
+                Text(viewModel.price).foregroundColor(viewModel.sideColor).padding(.leading, 10)
                 Spacer()
                 Text(viewModel.size).foregroundColor(viewModel.sideColor)
                 Spacer()
-                Text(ViewHelper.convertTimestampToTime(viewModel.timestamp)).foregroundColor(viewModel.sideColor)
+                Text(ViewHelper.convertTimestampToTime(viewModel.timestamp)).foregroundColor(viewModel.sideColor).padding(.trailing, 10)
             }
         }
     }

@@ -140,14 +140,14 @@ public final class MarketDataInteractor: MarketDataInteractorProtocol {
         }
 
         // Generate OrderBookItem from orderBookData
-        orderBookValueSubject.send(generateOrderBookItem())
+        orderBookValueSubject.send(generateOrderBookItem(orderBookData))
     }
 
-	func generateOrderBookItem() -> [OrderBookItem] {
+	func generateOrderBookItem(_ orderBookData: [Side: [Decimal: [OrderBookL2Data]]]) -> [OrderBookItem] {
 		var orderBookItems: [OrderBookItem] = []
         // Get 20 buy orders and 20 sell orders
-        let buyOrders = self.orderBookData[.buy]!.sorted { $0.key > $1.key }.prefix(20)
-        let sellOrders = self.orderBookData[.sell]!.sorted { $0.key < $1.key }.prefix(20)
+        let buyOrders = orderBookData[.buy, default: [:]].sorted { $0.key > $1.key }.prefix(20)
+        let sellOrders = orderBookData[.sell, default: [:]].sorted { $0.key < $1.key }.prefix(20)
         let totalBuyVolume = buyOrders.reduce(0) { $0 + $1.value.reduce(0) { $0 + Decimal($1.size ?? .zero) } }
         let totalSellVolume = sellOrders.reduce(0) { $0 + $1.value.reduce(0) { $0 + Decimal($1.size ?? .zero) } }
         var accumulatedBuyVolume = Decimal.zero

@@ -18,7 +18,7 @@ public struct OrderBookItemView<ViewModel>: View where ViewModel: OrderBookItemV
             ZStack {
                 HStack(spacing: 0) {
                     HStack {
-                        Text(viewModel.buySize).minimumScaleFactor(0.2)
+                        Text(viewModel.buySize).minimumScaleFactor(0.2).padding(.leading, 10)
                         Spacer(minLength: 0)
                         Text(viewModel.buyPrice)
                             .foregroundColor(viewModel.buyPriceColor)
@@ -32,15 +32,13 @@ public struct OrderBookItemView<ViewModel>: View where ViewModel: OrderBookItemV
                             .minimumScaleFactor(0.2)
                             .padding(.leading, 5.0)
                         Spacer(minLength: 0)
-                        Text(viewModel.sellSize).minimumScaleFactor(0.2)
+                        Text(viewModel.sellSize).minimumScaleFactor(0.2).padding(.trailing, 10)
                     }
                     .frame(width: viewWidth / 2.0)
                 }
 
                 // Display a rectangular shape with a gradient color green
                 // The width of the rectangle is calculated based on the totalBuyVolume and buyVolume
-                // The height of the rectangle is 50
-                // The rectangle is displayed on the left of the text
                 // color alpha is 0.4
                 HStack(spacing: 0) {
                     HStack {
@@ -48,7 +46,6 @@ public struct OrderBookItemView<ViewModel>: View where ViewModel: OrderBookItemV
                         Rectangle()
                             .fill(.green)
 							.frame(width: CGFloat(viewWidth / 2.0 * viewModel.buySizePercentage))
-                            // .frame(width: CGFloat(viewWidth / 2.0 * SizeHelper.calculateSize(totalBuyVolume: totalBuyVolume, totalSellVolume: totalSellVolume, accumulatedVolume: accumulatedBuyVolume)))
                     }
                     .frame(width: viewWidth / 2.0)
                     HStack {
