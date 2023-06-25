@@ -31,7 +31,6 @@ struct OrderBookView<ViewModel>: View where ViewModel: OrderBookViewModelProtoco
                     Text("Qty").foregroundColor(.secondary)
                 }
                 .padding(.horizontal, 20)
-//                    .frame(width: geoWidth, height: 50, alignment: .center)
             }
 
             // Scrollable view
