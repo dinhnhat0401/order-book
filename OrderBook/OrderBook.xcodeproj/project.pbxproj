@@ -15,14 +15,10 @@
 		842383422A448EDD001E0BD0 /* OrderBookViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842383412A448EDD001E0BD0 /* OrderBookViewModel.swift */; };
 		842383462A448F0A001E0BD0 /* RecentTradeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842383452A448F0A001E0BD0 /* RecentTradeViewModel.swift */; };
 		842383482A448F29001E0BD0 /* OrderBookItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842383472A448F29001E0BD0 /* OrderBookItemViewModel.swift */; };
-		8423835A2A45C6E5001E0BD0 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 842383592A45C6E5001E0BD0 /* Factory */; };
 		8423835B2A45C786001E0BD0 /* MarketDataInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CB4CF2A40986D0097B017 /* MarketDataInteractor.swift */; };
-		8423835E2A45C854001E0BD0 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 8423835D2A45C854001E0BD0 /* Factory */; };
 		842383612A45CB6A001E0BD0 /* Injection+Repo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423835F2A45CB43001E0BD0 /* Injection+Repo.swift */; };
 		842383642A45CBE3001E0BD0 /* Injection+Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842383622A45CBA4001E0BD0 /* Injection+Service.swift */; };
-		842383662A45CC55001E0BD0 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 842383652A45CC55001E0BD0 /* Factory */; };
 		842383692A45CD15001E0BD0 /* Injection+Interactor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842383672A45CC9E001E0BD0 /* Injection+Interactor.swift */; };
-		8423836B2A45CD37001E0BD0 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 8423836A2A45CD37001E0BD0 /* Factory */; };
 		8423836D2A466EBD001E0BD0 /* TradeScreenViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423836C2A466EBD001E0BD0 /* TradeScreenViewModel.swift */; };
 		842383722A4675A3001E0BD0 /* OrderBookItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8423836E2A467445001E0BD0 /* OrderBookItem.swift */; };
 		844830572A407C4100367567 /* OrderBookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 844830562A407C4100367567 /* OrderBookApp.swift */; };
@@ -44,6 +40,11 @@
 		844830DC2A407F9900367567 /* Views.h in Headers */ = {isa = PBXBuildFile; fileRef = 844830CC2A407F9900367567 /* Views.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		844830DF2A407F9900367567 /* Views.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 844830CA2A407F9900367567 /* Views.framework */; };
 		844830E02A407F9900367567 /* Views.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 844830CA2A407F9900367567 /* Views.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		84655FF12A4959DE00C5FEA4 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 84655FF02A4959DE00C5FEA4 /* Factory */; };
+		84655FF32A4959EA00C5FEA4 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 84655FF22A4959EA00C5FEA4 /* Factory */; };
+		84655FF52A4959F000C5FEA4 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 84655FF42A4959F000C5FEA4 /* Factory */; };
+		84655FF72A4959F300C5FEA4 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 84655FF62A4959F300C5FEA4 /* Factory */; };
+		84655FF92A495A4E00C5FEA4 /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 84655FF82A495A4E00C5FEA4 /* Factory */; };
 		8489BC662A46C8390010808E /* TradeItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489BC632A46C8220010808E /* TradeItemView.swift */; };
 		8489BC672A46C84E0010808E /* TradeItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489BC612A46C80E0010808E /* TradeItemViewModel.swift */; };
 		8489BC692A46C9960010808E /* TradeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489BC682A46C9960010808E /* TradeItem.swift */; };
@@ -52,7 +53,6 @@
 		8489BC7E2A47E5150010808E /* ViewModelHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489BC7C2A47E50E0010808E /* ViewModelHelper.swift */; };
 		8489BC802A47E8080010808E /* ViewModelHelperTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8489BC7F2A47E8080010808E /* ViewModelHelperTests.swift */; };
 		8489BC832A480DDC0010808E /* SnapshotTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 8489BC822A480DDC0010808E /* SnapshotTesting */; };
-		8489BC8D2A4814980010808E /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 8489BC8C2A4814980010808E /* Factory */; };
 		848CB4462A4096440097B017 /* Entities.docc in Sources */ = {isa = PBXBuildFile; fileRef = 848CB4452A4096440097B017 /* Entities.docc */; };
 		848CB44C2A4096440097B017 /* Entities.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 848CB4422A4096440097B017 /* Entities.framework */; };
 		848CB4532A4096440097B017 /* EntitiesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 848CB4522A4096440097B017 /* EntitiesTests.swift */; };
@@ -356,7 +356,7 @@
 			files = (
 				844830BD2A407F7600367567 /* ViewModels.framework in Frameworks */,
 				848CB49F2A4096970097B017 /* Interactors.framework in Frameworks */,
-				8423835A2A45C6E5001E0BD0 /* Factory in Frameworks */,
+				84655FF12A4959DE00C5FEA4 /* Factory in Frameworks */,
 				844830DF2A407F9900367567 /* Views.framework in Frameworks */,
 				848CB47D2A4096890097B017 /* Repositories.framework in Frameworks */,
 				848CB4C42A40978D0097B017 /* Services.framework in Frameworks */,
@@ -369,7 +369,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8489BC832A480DDC0010808E /* SnapshotTesting in Frameworks */,
-				8489BC8D2A4814980010808E /* Factory in Frameworks */,
+				84655FF92A495A4E00C5FEA4 /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -384,7 +384,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8423836B2A45CD37001E0BD0 /* Factory in Frameworks */,
+				84655FF32A4959EA00C5FEA4 /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,7 +430,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				842383662A45CC55001E0BD0 /* Factory in Frameworks */,
+				84655FF52A4959F000C5FEA4 /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -446,7 +446,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8423835E2A45C854001E0BD0 /* Factory in Frameworks */,
+				84655FF72A4959F300C5FEA4 /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -818,7 +818,7 @@
 			);
 			name = OrderBook;
 			packageProductDependencies = (
-				842383592A45C6E5001E0BD0 /* Factory */,
+				84655FF02A4959DE00C5FEA4 /* Factory */,
 			);
 			productName = OrderBook;
 			productReference = 844830532A407C4100367567 /* OrderBook.app */;
@@ -840,7 +840,7 @@
 			name = OrderBookTests;
 			packageProductDependencies = (
 				8489BC822A480DDC0010808E /* SnapshotTesting */,
-				8489BC8C2A4814980010808E /* Factory */,
+				84655FF82A495A4E00C5FEA4 /* Factory */,
 			);
 			productName = OrderBookTests;
 			productReference = 844830632A407C4700367567 /* OrderBookTests.xctest */;
@@ -880,7 +880,7 @@
 			);
 			name = ViewModels;
 			packageProductDependencies = (
-				8423836A2A45CD37001E0BD0 /* Factory */,
+				84655FF22A4959EA00C5FEA4 /* Factory */,
 			);
 			productName = ViewModels;
 			productReference = 844830A82A407F7600367567 /* ViewModels.framework */;
@@ -996,7 +996,7 @@
 			);
 			name = Repositories;
 			packageProductDependencies = (
-				842383652A45CC55001E0BD0 /* Factory */,
+				84655FF42A4959F000C5FEA4 /* Factory */,
 			);
 			productName = Repositories;
 			productReference = 848CB4682A4096890097B017 /* Repositories.framework */;
@@ -1037,7 +1037,7 @@
 			);
 			name = Interactors;
 			packageProductDependencies = (
-				8423835D2A45C854001E0BD0 /* Factory */,
+				84655FF62A4959F300C5FEA4 /* Factory */,
 			);
 			productName = Interactors;
 			productReference = 848CB48A2A4096960097B017 /* Interactors.framework */;
@@ -1174,8 +1174,8 @@
 			);
 			mainGroup = 8448304A2A407C4100367567;
 			packageReferences = (
-				842383582A45C6E5001E0BD0 /* XCRemoteSwiftPackageReference "Factory" */,
 				8489BC812A480DDC0010808E /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */,
+				84655FEF2A4959DE00C5FEA4 /* XCRemoteSwiftPackageReference "Factory" */,
 			);
 			productRefGroup = 844830542A407C4100367567 /* Products */;
 			projectDirPath = "";
@@ -2612,9 +2612,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		842383582A45C6E5001E0BD0 /* XCRemoteSwiftPackageReference "Factory" */ = {
+		84655FEF2A4959DE00C5FEA4 /* XCRemoteSwiftPackageReference "Factory" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:hmlongco/Factory.git";
+			repositoryURL = "https://github.com/hmlongco/Factory.git";
 			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 2.0.0;
@@ -2631,35 +2631,35 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		842383592A45C6E5001E0BD0 /* Factory */ = {
+		84655FF02A4959DE00C5FEA4 /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 842383582A45C6E5001E0BD0 /* XCRemoteSwiftPackageReference "Factory" */;
+			package = 84655FEF2A4959DE00C5FEA4 /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = Factory;
 		};
-		8423835D2A45C854001E0BD0 /* Factory */ = {
+		84655FF22A4959EA00C5FEA4 /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 842383582A45C6E5001E0BD0 /* XCRemoteSwiftPackageReference "Factory" */;
+			package = 84655FEF2A4959DE00C5FEA4 /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = Factory;
 		};
-		842383652A45CC55001E0BD0 /* Factory */ = {
+		84655FF42A4959F000C5FEA4 /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 842383582A45C6E5001E0BD0 /* XCRemoteSwiftPackageReference "Factory" */;
+			package = 84655FEF2A4959DE00C5FEA4 /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = Factory;
 		};
-		8423836A2A45CD37001E0BD0 /* Factory */ = {
+		84655FF62A4959F300C5FEA4 /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 842383582A45C6E5001E0BD0 /* XCRemoteSwiftPackageReference "Factory" */;
+			package = 84655FEF2A4959DE00C5FEA4 /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
+		};
+		84655FF82A495A4E00C5FEA4 /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 84655FEF2A4959DE00C5FEA4 /* XCRemoteSwiftPackageReference "Factory" */;
 			productName = Factory;
 		};
 		8489BC822A480DDC0010808E /* SnapshotTesting */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 8489BC812A480DDC0010808E /* XCRemoteSwiftPackageReference "swift-snapshot-testing" */;
 			productName = SnapshotTesting;
-		};
-		8489BC8C2A4814980010808E /* Factory */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 842383582A45C6E5001E0BD0 /* XCRemoteSwiftPackageReference "Factory" */;
-			productName = Factory;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
